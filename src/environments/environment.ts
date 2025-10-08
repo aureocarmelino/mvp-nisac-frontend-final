@@ -7,8 +7,16 @@
 };
 */
 
+export const environment =
+{
+  production: false,
+  baseUrl: 'https://mvp-nisac-backend-final.onrender.com',
+  tokenAllowedDomains: ["https://mvp-nisac-backend-final.onrender.com"],
+  disallowedRoutes: [/\/oauth\/token/, /\/api\/auth\/signup/]
+};
 
 
+/*
 export const environment =
 {
   production: false,
@@ -16,7 +24,7 @@ export const environment =
   tokenAllowedDomains: ["localhost:8080"],
   disallowedRoutes: [/\/oauth\/token/, /\/api\/auth\/signup/]
 };
-
+*/
 
 /*
 export const environment =
