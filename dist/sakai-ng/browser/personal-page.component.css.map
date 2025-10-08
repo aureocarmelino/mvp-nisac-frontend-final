@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/user/personal-page/personal-page.component.scss"],
+  "sourcesContent": ["/* Responsividade para telas pequenas (mobile e tablet) */\r\n@media (max-width: 767px)\r\n{\r\n    /* Alinhar o botão de editar em baixo do texto em telas pequenas */\r\n    .text-500.mb-5 {\r\n        flex-direction: column;\r\n        align-items: flex-start;\r\n    }\r\n\r\n    .edit-button {\r\n        margin-top: 10px; /* Adicionar um espaçamento entre o texto e o botão */\r\n        width: 100%; /* Garantir que o botão ocupe a largura completa */\r\n        text-align: left; /* Alinhar o texto do botão à esquerda */\r\n    }\r\n\r\n    .list-none {\r\n        padding: 0;\r\n        margin: 0;\r\n    }\r\n\r\n    /* Para garantir que o botão de Editar não fique cortado em telas pequenas */\r\n    .p-button-text {\r\n        white-space: nowrap; /* Impedir o corte do texto */\r\n    }\r\n}\r\n\r\n/* Em telas médias (como tablet) */\r\n@media (max-width: 1024px)\r\n{\r\n    .edit-button {\r\n        width: auto;\r\n    }\r\n}\r\n"],
+  "mappings": ";;;AACA,OAAA,CAAA,SAAA,EAAA;AAGI,GAAA,QAAA,CAAA;AACI,oBAAA;AACA,iBAAA;;AAGJ,GAAA;AACI,gBAAA;AACA,WAAA;AACA,gBAAA;;AAGJ,GAAA;AACI,aAAA;AACA,YAAA;;AAIJ,GAAA;AACI,iBAAA;;;AAKR,OAAA,CAAA,SAAA,EAAA;AAEI,GApBA;AAqBI,WAAA;;;",
+  "names": []
+}

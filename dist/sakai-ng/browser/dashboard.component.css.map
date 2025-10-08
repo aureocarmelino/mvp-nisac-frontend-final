@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/dashboard/dashboard.component.scss"],
+  "sourcesContent": [".percentagem\r\n{\r\n    min-width: 60px; /* Ajuste conforme necessário */\r\n    text-align: right; /* Alinha o texto à direita */\r\n}\r\n"],
+  "mappings": ";;;AAAA,CAAA;AAEI,aAAA;AACA,cAAA;;",
+  "names": []
+}

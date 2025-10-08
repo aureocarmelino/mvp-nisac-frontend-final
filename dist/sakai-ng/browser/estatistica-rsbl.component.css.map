@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/consultas/estatistica-rsbl/estatistica-rsbl.component.scss"],
+  "sourcesContent": ["::ng-deep .p-datatable-gridlines .p-datatable-tbody > tr > td,\r\n::ng-deep .p-datatable-gridlines .p-datatable-thead > tr > th {\r\n  border: 1px solid #dcdcdc !important;\r\n}\r\n\r\n::ng-deep .p-datatable .p-datatable-tbody > tr > td[colspan] {\r\n    border: 1px solid #ccc !important;\r\n  }\r\n"],
+  "mappings": ";AAAA,UAAA,CAAA,sBAAA,CAAA,kBAAA,EAAA,GAAA,EAAA;AAAA,UAAA,CAAA,sBAAA,CAAA,kBAAA,EAAA,GAAA,EAAA;AAEE,UAAA,IAAA,MAAA;;AAGF,UAAA,CAAA,YAAA,CALA,kBAKA,EAAA,GAAA,EAAA,EAAA,CAAA;AACI,UAAA,IAAA,MAAA;;",
+  "names": []
+}
