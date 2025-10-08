@@ -122,7 +122,8 @@ export class AuthService
   {
 
     this.jwtPayload = this.jwtHelper.decodeToken(token);
-    //console.log(JSON.stringify(this.jwtPayload))
+    console.log(JSON.stringify(this.jwtPayload))
+    console.log('JWT PAYLOAD:', this.jwtPayload);
 
     localStorage.setItem('token', token);
 
@@ -151,7 +152,7 @@ export class AuthService
     this.jwtPayload = null;
     console.log("TOKEN LIMPO")
 
-    //alert(this.jwtPayload);
+    alert(this.jwtPayload);
 
     // 🔹 Notifica logout
     this.currentUserSubject.next(null);

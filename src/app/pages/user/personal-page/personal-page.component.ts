@@ -15,6 +15,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { SpinnerComponent } from '../../../components/loader/spinner/spinner.component';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-personal-page',
@@ -60,8 +62,9 @@ export class PersonalPageComponent implements OnInit
        // this.user = this.auth.jwtPayload.logged;
         //console.log(this.user.authority)
         this.auth.currentUser$.subscribe(user => {
-            this.user = user;
+
             console.log('Usuário carregado:', user);
+            this.user = user;
         });
     }
 
