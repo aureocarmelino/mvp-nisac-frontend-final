@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '../../../environments/environment';
-import { Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 
 @Injectable({
@@ -14,6 +14,10 @@ export class AuthService
   isLoggingOut = false;
   url = environment.baseUrl;
   jwtPayload: any;
+
+  // 🔹 Novo: BehaviorSubject para emitir o usuário logado
+  private currentUserSubject = new BehaviorSubject<any>(null);
+  public currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private router: Router)
   {
@@ -121,6 +125,9 @@ export class AuthService
     //console.log(JSON.stringify(this.jwtPayload))
 
     localStorage.setItem('token', token);
+
+    // 🔹 Atualiza o BehaviorSubject
+    this.currentUserSubject.next(this.jwtPayload?.logged || null);
   }
 
   public loadToken()
@@ -145,6 +152,9 @@ export class AuthService
     console.log("TOKEN LIMPO")
 
     //alert(this.jwtPayload);
+
+    // 🔹 Notifica logout
+    this.currentUserSubject.next(null);
   }
 
 

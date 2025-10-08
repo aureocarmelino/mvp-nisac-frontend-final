@@ -1,5 +1,5 @@
 
-<ng-container *ngIf="auth?.jwtPayload?.logged; else loadingTemplate">
+<ng-container *ngIf="user; else loadingTemplate">
     <div class="p-6">
       <h2 class="text-3xl font-semibold text-gray-900 mb-4">Perfil</h2>
 

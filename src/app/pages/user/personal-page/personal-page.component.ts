@@ -57,8 +57,12 @@ export class PersonalPageComponent implements OnInit
 
     ngOnInit(): void
     {
-        this.user = this.auth.jwtPayload.logged;
-        console.log(this.user.authority)
+       // this.user = this.auth.jwtPayload.logged;
+        //console.log(this.user.authority)
+        this.auth.currentUser$.subscribe(user => {
+            this.user = user;
+            console.log('Usuário carregado:', user);
+        });
     }
 
   showDialog()
