@@ -62,8 +62,7 @@ export class PersonalPageComponent implements OnInit
        // this.user = this.auth.jwtPayload.logged;
         //console.log(this.user.authority)
         this.auth.currentUser$.subscribe(user => {
-
-            console.log('Usuário carregado:', user);
+            console.log("Usuário carregado:", user);
             this.user = user;
         });
     }

@@ -137,9 +137,10 @@ export class AuthService
     console.log("LOAD TOKEN")
     const token = localStorage.getItem('token');
 
-    if ( token )
-    {
-      this.storeToken(token);
+     if (token) {
+        this.storeToken(token); // já emite para o BehaviorSubject
+    } else {
+        this.currentUserSubject.next(null);
     }
   }
 
