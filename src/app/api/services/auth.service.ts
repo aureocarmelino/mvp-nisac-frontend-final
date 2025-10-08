@@ -122,28 +122,29 @@ export class AuthService
   {
 
     this.jwtPayload = this.jwtHelper.decodeToken(token);
-    console.log(JSON.stringify(this.jwtPayload))
-    console.log('JWT PAYLOAD:', this.jwtPayload);
+  console.log('✅ storeToken() chamado');
+  console.log('JWT PAYLOAD:', this.jwtPayload);
 
-    localStorage.setItem('token', token);
+  localStorage.setItem('token', token);
 
-     // ✅ Atualiza o BehaviorSubject com o usuário logado
-    const user = this.jwtPayload?.logged || null;
-    this.currentUserSubject.next(user);
+  const user = this.jwtPayload?.logged || null;
+  console.log('➡️ Emitindo usuário em storeToken():', user);
+  this.currentUserSubject.next(user);
   }
 
   public loadToken() {
     const token = localStorage.getItem('token');
-    console.log('LOAD TOKEN', token ? 'token encontrado' : 'sem token');
+  console.log('🔹 loadToken() chamado - token:', token ? 'encontrado' : 'NÃO encontrado');
 
-    if (token) {
-      this.jwtPayload = this.jwtHelper.decodeToken(token);
-      const user = this.jwtPayload?.logged || null;
-      console.log('User carregado do token:', user);
-      this.currentUserSubject.next(user); // ✅ importante: emite mesmo ao recarregar a página
-    } else {
-      this.currentUserSubject.next(null);
-    }
+  if (token) {
+    this.jwtPayload = this.jwtHelper.decodeToken(token);
+    const user = this.jwtPayload?.logged || null;
+    console.log('➡️ Emitindo usuário em loadToken():', user);
+    this.currentUserSubject.next(user);
+  } else {
+    console.log('❌ Sem token, emitindo null');
+    this.currentUserSubject.next(null);
+  }
   }
 
 
