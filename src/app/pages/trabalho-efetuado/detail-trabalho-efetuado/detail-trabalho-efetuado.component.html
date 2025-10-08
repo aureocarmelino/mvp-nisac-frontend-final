@@ -1,0 +1,66 @@
+<ng-container *ngIf="trabalhoEfetuado; else loadingTemplate">
+    <div class="p-6">
+      <h2 class="text-3xl font-semibold text-gray-900 mb-4">Detalhe - Trabalho Efetuado</h2>
+
+      <div
+        class="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 mb-6 space-y-2 md:space-y-0"
+      >
+        <p>Aqui você pode visualizar os detalhes do trabalho efetuado.</p>
+
+        <!--ng-container *ngIf="auth.jwtPayload.logged.authority === 'ADMIN'">
+          <button
+            pButton
+            label="Editar"
+            icon="pi pi-pencil"
+            class="p-button p-button-sm p-button-text"
+            (click)="onEdit()"
+          ></button>
+        </ng-container-->
+      </div>
+
+      <ul class="divide-y divide-gray-200">
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Trabalho Efetuado</div>
+          <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ trabalhoEfetuado.description }}</div>
+        </li>
+
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Criação</div>
+          <div class="w-full md:w-3/4 text-gray-900">
+            {{ trabalhoEfetuado.creationDate | date: 'dd/MM/yyyy HH:mm' }}
+          </div>
+        </li>
+
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Actualização</div>
+          <div class="w-full md:w-3/4 text-gray-900">
+            {{ trabalhoEfetuado.updateDate | date: 'dd/MM/yyyy HH:mm' }}
+          </div>
+        </li>
+
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Estado</div>
+          <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+            <i
+              class="pi"
+              [ngClass]="{
+                'pi-check-circle text-green-500': trabalhoEfetuado.status,
+                'pi-times-circle text-red-500': !trabalhoEfetuado.status
+              }"
+            ></i>
+            <span class="font-semibold" [ngClass]="trabalhoEfetuado.status ? 'text-green-500' : 'text-red-500'">
+              {{ trabalhoEfetuado.status ? 'Activo' : 'Inactivo' }}
+            </span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="mt-6">
+        <p-button (click)="goBack()" label="Listagem" icon="pi pi-arrow-left"></p-button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingTemplate>
+    <p class="text-center text-gray-500">Informações do tipo de equipamento não disponíveis.</p>
+  </ng-template>

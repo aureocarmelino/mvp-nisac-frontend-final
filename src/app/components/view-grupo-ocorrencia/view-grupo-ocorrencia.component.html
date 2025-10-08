@@ -1,0 +1,29 @@
+<div class="flex flex-col">
+    <div class="card" style="background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%);">
+        <div style="color: whitesmoke;" class="font-semibold text-2xl mb-3">Ocorrências</div>
+        <app-breadcrumb [items]="items"></app-breadcrumb>
+    </div>
+</div>
+
+<div class="grid mt-3">
+  @for(grupoNaturezaOcorrencia of grupoNaturezaOcorrencias; track $index)
+  {
+      <div class="col-6 lg:col-6 xl:col-3" routerLink="{{grupoNaturezaOcorrencia.linkCard}}">
+          <div class="card mb-0 {{grupoNaturezaOcorrencia.nomeCardOcorrencia}} hover-card" style="text-align: center; cursor: pointer;">
+
+              <!-- Ícone circular centralizado -->
+              <div class="d-flex align-items-center justify-content-center mt-3">
+                  <div class="card-icon" style="width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                      <i class="{{grupoNaturezaOcorrencia.iconCard}}" style="font-size: 30px;"></i>
+                  </div>
+              </div>
+
+              <!-- Título -->
+              <h5 class="card-title mt-3">{{grupoNaturezaOcorrencia.tileCard}}</h5>
+          </div>
+      </div>
+  }
+</div>
+
+
+

@@ -1,0 +1,115 @@
+<app-spinner></app-spinner>
+
+<div class="flex flex-col">
+    <div class="card"
+        style="background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%)">
+        <div style="color: whitesmoke" class="font-semibold text-2xl mb-3">Registo de Atividades, Reuniões e Eventos</div>
+        <app-breadcrumb [items]="itemsMenu"></app-breadcrumb>
+    </div>
+</div>
+
+<p-fluid>
+    <form [formGroup]="newAtividadeReuniaoEventoForm" (ngSubmit)="add($event)" autocomplete="off">
+        <div class="flex mt-8" >
+            <div class="card flex flex-col gap-6 w-full">
+
+                <div class="flex flex-col md:flex-row gap-6">
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="tipoNaturezaOcorrencia">Tipo de Natureza *</label>
+                        <p-select id="tipoNaturezaOcorrencia"
+                            optionLabel="description"
+                            optionValue="id"
+                            [options]="tipoNaturezasItens"
+                            placeholder="Selecione o tipo de natureza"
+                            class="w-full" formControlName="tipoNaturezaOcorrencia"/>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="tipoAtividadeReuniaoEvento">Tipo Atividade, Reunião e Evento *</label>
+                        <p-select id="tipoAtividadeReuniaoEvento"
+                            emptyMessage="Nenhum resultado encontrado"
+                            optionLabel="description"
+                            optionValue="id"
+                            id="tipoAtividadeReuniaoEvento"
+                            [options]="tipoAtividadeReuniaoEventoItens"
+                            placeholder="Selecione o tipo de atividade, reunião e evento"
+                            class="w-full" formControlName="tipoAtividadeReuniaoEvento"
+                            (onChange)="loadAcaoSubTipoAtividadeReuniaoEvento()"
+                            />
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="acaoSubTipoAtividadeReuniaoEvento">Ação - Tipo *</label>
+                        <p-select id="acaoSubTipoAtividadeReuniaoEvento"
+                        emptyMessage="Nenhum resultado encontrado"
+                        optionLabel="description"
+                        optionValue="id"
+                        id="acaoSubTipoAtividadeReuniaoEvento"
+                        [options]="acaoSubTipoAtividadeReuniaoEventoItens" placeholder="Selecione a ação"
+                        formControlName="acaoSubTipoAtividadeReuniaoEvento"
+                        class="w-full"/>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="exemplosOuReferencias">Exemplos ou Referências</label>
+                        <input pInputText id="exemplosOuReferencias" type="text"  formControlName="exemplosOuReferencias"  />
+                    </div>
+
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="representantesNisac">Representantes do Nisac / RSBL</label>
+                        <input pInputText id="representantesNisac" type="text"  formControlName="representantesNisac"  />
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="representantesExternos">Representantes Externos</label>
+                        <input pInputText id="representantesExternos" type="text"  formControlName="representantesExternos"  />
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-6">
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="entidadePromotoraEvento">Entidade Promotora do Evento</label>
+                        <input pInputText id="entidadePromotoraEvento" type="text"  formControlName="entidadePromotoraEvento"  />
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="responsavelEntidadePromotoraEvento">Responsável da Entidade Promotora</label>
+                        <input pInputText id="responsavelEntidadePromotoraEvento" type="text"  formControlName="responsavelEntidadePromotoraEvento"  />
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="local">Local</label>
+                        <input pInputText id="local" type="text"  formControlName="local"  />
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="numeroActa">Nº Ata</label>
+                        <input pInputText id="numeroActa" type="text"  formControlName="numeroActa"  />
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <label for="ambitoOuObservacao">Âmbito (Observações)</label>
+                    <textarea rows="5" id="ambitoOuObservacao" formControlName="descricaoTrabalhos" cols="30" pTextarea formControlName="ambitoOuObservacao"></textarea>
+                </div>
+
+
+            <div class="flex flex-col md:flex-row gap-2">
+                <div class="flex flex-wrap gap-2 w-full">
+                    <p-button [disabled]="!newAtividadeReuniaoEventoForm.valid" type="submit" label="Guardar" severity="secondary" raised />
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </form>
+</p-fluid>
+
+
+
+

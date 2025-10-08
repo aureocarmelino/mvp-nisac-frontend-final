@@ -1,0 +1,104 @@
+<app-spinner></app-spinner>
+
+<div class="flex flex-col">
+    <div class="card"
+        style="background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%)">
+        <div style="color: whitesmoke" class="font-semibold text-2xl mb-3">Listagem de Moradas</div>
+        <app-breadcrumb [items]="items"></app-breadcrumb>
+    </div>
+</div>
+
+<br>
+
+<div class="card">
+    <div class="font-semibold text-xl mb-4">Moradas</div>
+    <p-table
+        #dt1
+        [lazy]="true"
+        (onLazyLoad)="loadList($event)"
+        [totalRecords]="total"
+        [value]="list"
+        dataKey="id"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 15, 20]"
+        [rowHover]="true"
+        [showGridlines]="true"
+        [paginator]="true"
+        responsiveLayout="scroll"
+    >
+
+        <ng-template #header>
+            <tr>
+                <th style="min-width: 12rem;">
+                    <div class="flex justify-between items-center">
+                        Rua
+                        <!--p-columnFilter type="text" field="name" display="menu" placeholder="Procurar por nome"></p-columnFilter-->
+                    </div>
+                </th>
+
+                <th style="min-width: 12rem;">
+                    <div class="flex justify-between items-center">
+                        Freguesia
+                        <!--p-columnFilter type="text" field="name" display="menu" placeholder="Procurar por nome"></p-columnFilter-->
+                    </div>
+                </th>
+
+                <th style="min-width: 5rem">
+                    <div class="flex justify-between items-center">
+                         Data criação
+                        <!--p-columnFilter type="text" field="country.name" display="menu" placeholder="Search by country"></p-columnFilter-->
+                    </div>
+                </th>
+
+                <th style="min-width: 5rem">
+                    <div class="flex justify-between items-center">
+                        Estado
+                    </div>
+                </th>
+
+                <th>
+                    <div class="flex justify-between items-center">
+                        Ver
+                        <!--p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter -->
+                    </div>
+                </th>
+
+            </tr>
+        </ng-template>
+        <ng-template #body let-morada>
+            <tr>
+                <td>
+                    {{ morada.rua }}
+                </td>
+                <td>
+                    {{ morada.freguesia.description }}
+                </td>
+                <td>
+                    {{ morada.creationDate | date: 'dd/MM/yyyy' }}
+                </td>
+                <td>
+                    <i
+                        class="pi"
+                        [ngClass]="{
+                            'pi-check-circle text-green-500': morada?.status,
+                            'pi-times-circle text-red-500': !morada?.status
+                        }"
+                        ></i>
+                </td>
+                <td style="cursor: pointer" class="text-center" (click)="goToDetail(morada.id)">
+                    <i class="pi pi-eye" style="color: slateblue"></i>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="8">Nenhuma morada encontrada</td>
+            </tr>
+        </ng-template>
+        <ng-template #loadingbody>
+            <tr>
+                <td colspan="8">Carregando moradas. Por favor aguarde !</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

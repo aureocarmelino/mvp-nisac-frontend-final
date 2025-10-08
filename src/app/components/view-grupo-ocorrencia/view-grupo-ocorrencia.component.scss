@@ -1,0 +1,113 @@
+@import "../../../../node_modules/primeflex/primeflex.min.css";
+
+/* Estilos básicos dos cards
+.card {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-size: 1.2em;
+  margin: 0;
+  font-weight: 500;
+}
+*/
+
+/* Estilos para os ícones dentro dos cards
+.card-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  color: #fff;
+}
+*/
+/* Cores específicas para cada tipo de card /
+.card.apoi-social .card-icon {
+  background-color: #6b5bff; /* Azul claro /
+}
+
+.card.teleassistencia .card-icon {
+  background-color: #4caf50; /* Verde /
+}
+
+.card.saidas-abtm .card-icon {
+  background-color: #ff9800; /* Laranja /
+}
+
+.card.saidas-hospital-abtm .card-icon {
+  background-color: #ff5252; /* Vermelho claro /
+}
+
+.card.ocorrencia-diversa .card-icon {
+  background-color: #ab47bc; /* Roxo /
+}
+
+.card.kit-emergencia-social .card-icon {
+  background-color: #f44336; /* Vermelho /
+}
+
+.card.reforco-aguas .card-icon {
+  background-color: #3f51b5; /* Azul /
+}
+
+.card.sinalizacoes .card-icon {
+  background-color: #009688; /* Verde-água /
+}
+
+.card.detectores-fumo .card-icon {
+  background-color: #ff7043; /* Laranja mais escuro /
+}
+
+/* Responsividade /
+@media (max-width: 1200px) {
+  .card-container {
+      max-width: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .card-container {
+      max-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container {
+      max-width: 50%;
+  }
+}
+*/
+
+
+/* Efeito hover no cartão */
+.hover-card:hover {
+    transform: scale(1.05); /* Aumenta um pouco o tamanho do cartão */
+    transition: transform 0.3s ease; /* Transição suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra para destacar */
+  }
+
+  /*
+  .card-icon:hover {
+    background-color: #f0f0f0; /* Muda a cor do fundo /
+    transform: scale(1.1); /* Aumenta o tamanho do ícone ao passar o mouse /
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transição suave /
+  }
+  */

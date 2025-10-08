@@ -1,0 +1,230 @@
+<ng-container *ngIf="teleAssistencia; else loadingTemplate">
+
+    <div class="p-6">
+        <h2 class="text-3xl font-semibold text-gray-900 mb-4">Detalhe - Teleassistência</h2>
+
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 mb-6 space-y-2 md:space-y-0">
+            <p>Aqui você pode visualizar os detalhes da teleassistência .</p>
+        </div>
+
+        <ul class="divide-y divide-gray-200">
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Grupo de ocorrência</div>
+                <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ teleAssistencia.tipoNaturezaOcorrencia.grupoNaturezaOcorrencia.description }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Tipo de Natureza</div>
+                <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ teleAssistencia.tipoNaturezaOcorrencia.description }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Tipo de Equipamento</div>
+                <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ teleAssistencia.tipoEquipamento.description }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Tipo de Trabalho Efectuado</div>
+                <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ teleAssistencia.trabalhoEfectuado.description }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Nome Completo</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ teleAssistencia.nomeCompleto }}</div>
+            </li>
+
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Idade ( No momento da intervenção )</div>
+                <div class="w-full md:w-3/4">{{ teleAssistencia.idadeMomentoIntervencao }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Nascimento</div>
+                <div class="w-full md:w-3/4">{{ teleAssistencia.dataNascimento }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500">Morada</div>
+                <div class="w-full md:w-3/4">{{ teleAssistencia.morada.rua }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Número Polícia</div>
+                <div class="w-full md:w-3/4">{{ teleAssistencia.numeroPolicia }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Fração</div>
+                <div class="w-full md:w-3/4">{{ teleAssistencia.fracao }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Telefone Fixo</div>
+                <div class="w-full md:w-3/4">{{ teleAssistencia.telefoneFixo }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Telemóvel</div>
+                <div class="w-full md:w-3/4">{{ teleAssistencia.telemovel }}</div>
+            </li>
+
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Insalubridade Habitacional</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': teleAssistencia.insalubridadeHabitacional,
+                        'pi-times-circle text-red-500': !teleAssistencia.insalubridadeHabitacional
+                    }"
+                    ></i>
+
+                </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Número Processo</div>
+                <div class="w-full md:w-3/4">{{ teleAssistencia.numeroProcesso }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Nº Série Equipamento</div>
+                <div class="w-full md:w-3/4">{{ teleAssistencia.numeroSerieEquipamento }}</div>
+            </li>
+
+
+
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+            <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Criação</div>
+            <div class="w-full md:w-3/4">
+                {{ teleAssistencia.creationDate | date: 'dd/MM/yyyy HH:mm' }}
+            </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+            <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Actualização</div>
+            <div class="w-full md:w-3/4">
+                {{ teleAssistencia.updateDate | date: 'dd/MM/yyyy HH:mm' }}
+            </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+            <div class="w-full md:w-1/4 text-gray-500 font-medium">Estado</div>
+            <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                <i
+                class="pi"
+                [ngClass]="{
+                    'pi-check-circle text-green-500': teleAssistencia.status,
+                    'pi-times-circle text-red-500': !teleAssistencia.status
+                }"
+                ></i>
+                <span class="font-semibold" [ngClass]="teleAssistencia.status ? 'text-green-500' : 'text-red-500'">
+                {{ teleAssistencia.status ? 'Activo' : 'Inactivo' }}
+                </span>
+            </div>
+            </li>
+        </ul>
+
+
+    </div>
+
+    <div class="p-6">
+        <h2 class="text-2xl  text-gray-900 mb-4">Projeto Radar</h2>
+
+        <ul class="divide-y divide-gray-200">
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Número Radar</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ teleAssistencia.projetoRadar.idRadar }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Entrevista Radar</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': teleAssistencia.projetoRadar.status,
+                        'pi-times-circle text-red-500': !teleAssistencia.projetoRadar.status
+                    }"
+                    ></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="p-6">
+        <h2 class="text-2xl  text-gray-900 mb-4">Plano Saúde Lisboa 65+</h2>
+        <ul class="divide-y divide-gray-200">
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Número Plano</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ teleAssistencia.planoSaudeLisboa65Mais.numeroPlano }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Ja é utente</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': teleAssistencia.planoSaudeLisboa65Mais.jaEutentePlano,
+                        'pi-times-circle text-red-500': !teleAssistencia.planoSaudeLisboa65Mais.jaEutentePlano
+                    }"
+                    ></i>
+                </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Foi realizada a inscrição</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': teleAssistencia.planoSaudeLisboa65Mais.foiRealizadaInscricaoPlano,
+                        'pi-times-circle text-red-500': !teleAssistencia.planoSaudeLisboa65Mais.foiRealizadaInscricaoPlano
+                    }"
+                    ></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="p-6">
+        <h2 class="text-2xl  text-gray-900 mb-4">Sinalização</h2>
+        <ul class="divide-y divide-gray-200">
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Foi feita a sinalização</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': teleAssistencia.sinalizacao.foiFeitaSinalizacao,
+                        'pi-times-circle text-red-500': !teleAssistencia.sinalizacao.foiFeitaSinalizacao
+                    }"
+                    ></i>
+                </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Como foi feita a sinalização</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ teleAssistencia.sinalizacao.comoFoiFeitaSinalizacao }}</div>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <div class="mt-6">
+        <p-button (click)="goBack()" label="Listagem" icon="pi pi-arrow-left"></p-button>
+    </div>
+
+</ng-container>
+
+<ng-template #loadingTemplate>
+    <p class="text-center text-gray-500">Informações do apoio social não disponíveis.</p>
+</ng-template>

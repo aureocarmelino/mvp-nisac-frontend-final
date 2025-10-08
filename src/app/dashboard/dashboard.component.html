@@ -1,0 +1,123 @@
+
+<h3 style="width: 100%;">Fase 1 </h3> <span><strong>Login & Perfil do Utilizador</strong></span>
+<h3 style="width: 100%;">Duração</h3> <span><strong>06 de Outubro a 15 de Dezembro</strong></span>
+<h3 style="width: 100%;">Objetivos</h3>
+
+<span><strong>1) Verificar se o utilizador realiza o login com sucesso</strong></span> <br>
+<span><strong>2) Não permitir o login em caso de informações incorretas</strong></span><br>
+<span><strong>3) Não permitir o login se utilizador estiver desativado</strong></span><br>
+<span><strong>4) Estando logado, visualizar informações do utilizador logado (perfil, nome, email, nome-de-utilizador, estado)</strong></span><br>
+
+<p-fluid class="grid grid-cols-12 gap-8">
+<p-fluid class="grid grid-cols-12 gap-8">
+
+
+    <!--
+
+    @for (ocorrenciaTotal of ocorrenciasPorMes; track $index)
+    {
+            <div class="col-span-12 lg:col-span-6 xl:col-span-3">
+                <div class="card mb-0">
+                    <div class="flex justify-between mb-4">
+                        <div>
+                            <span class="block text-muted-color font-medium mb-4">{{ ocorrenciaTotal.nomeOcorrencia }}</span>
+                            <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">{{ ocorrenciaTotal.total }}</div>
+                        </div>
+                        <div [ngClass]="ocorrenciaTotal.colorIconBackground" class="flex items-center justify-center rounded-border" style="width: 2.5rem; height: 2.5rem">
+                            <i class="pi pi-shopping-cart !text-xl" [ngClass]="'text-' + ocorrenciaTotal.colorBackground"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    }
+    <div class="col-span-12 lg:col-span-6 xl:col-span-3">
+        <div class="card mb-0">
+            <div class="flex justify-between mb-4">
+                <div>
+                    <span class="block text-muted-color font-medium mb-4"><Strong>TOTAL</Strong></span>
+                    <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">{{totalGeral}}</div>
+                </div>
+                <div class="flex items-center justify-center bg-gray-100 dark:bg-gray-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
+                    <i class="pi pi-comment text-purple-500 !text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-span-12 xl:col-span-6 ">
+        <div class="card">
+
+            <div class="flex justify-between items-center mb-6">
+                <h5>{{ this.mesCorrenteOcorrencia }}</h5>
+            </div>
+
+            <ul class="list-none p-0 m-0">
+
+                @for (ocorrenciaTotal of ocorrenciasPorMes; track $index)
+                {
+                    <li class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                      <div>
+                        <span class="text-surface-900 dark:text-surface-0 font-medium mr-2 mb-1 md:mb-0">
+                          {{ocorrenciaTotal.nomeOcorrencia}}
+                        </span>
+                        <div class="mt-1 text-600" [ngClass]="'text-' + ocorrenciaTotal.colorBackground">
+                          {{ocorrenciaTotal.total}}
+                        </div>
+                      </div>
+
+                      <div class="mt-2 md:mt-0 flex items-center">
+                        <div
+                          class="bg-surface-300 dark:bg-surface-500 rounded-border overflow-hidden w-40 lg:w-24"
+                          style="height: 8px"
+                        >
+                          <div
+                            class="h-full"
+                            [ngClass]="'bg-' + ocorrenciaTotal.colorBackground"
+                            [ngStyle]="{ width: ocorrenciaTotal.percentagem }"
+                          ></div>
+                        </div>
+                        <span
+                          class="ml-4 font-medium"
+                          [ngClass]="'text-' + ocorrenciaTotal.colorBackground"
+                        >
+                          {{ocorrenciaTotal.percentagem}}
+                        </span>
+                      </div>
+                    </li>
+                }
+            </ul>
+
+
+           <div style="margin-top: 20% !important;">
+                <div class="font-bold text-xl mt-5">Total: {{totalGeral}}</div>
+           </div>
+        </div>
+    </div>
+
+    <div class="col-span-12 xl:col-span-6">
+        <div class="card flex flex-col items-center">
+            <div class="font-semibold text-xl mb-4">Gráfico Polar - {{ mesCorrenteOcorrencia }}</div>
+            <p-chart type="polarArea" [data]="polarData" [options]="polarOptions" ></p-chart>
+        </div>
+    </div>
+
+
+    <div class="col-span-12 xl:col-span-6">
+        <div class="card flex flex-col items-center">
+            <div class="font-semibold text-xl mb-4">Gráfico Pizza - {{ mesCorrenteOcorrencia }}</div>
+            <p-chart type="pie" [data]="pieData" [options]="pieOptions"></p-chart>
+        </div>
+    </div>
+
+    <div class="col-span-12 xl:col-span-6">
+        <div class="card flex flex-col">
+            <div class="font-semibold text-xl mb-4">Gráfico de Barras - {{ mesCorrenteOcorrencia }}</div>
+            <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
+        </div>
+    </div>-->
+
+</p-fluid>
+

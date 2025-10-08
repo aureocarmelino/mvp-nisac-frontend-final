@@ -1,0 +1,56 @@
+<app-spinner></app-spinner>
+
+<div class="flex flex-col">
+    <div class="card"
+        style="background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%)">
+        <div style="color: whitesmoke" class="font-semibold text-2xl mb-3">Registo de Utilizador</div>
+        <app-breadcrumb [items]="items"></app-breadcrumb>
+    </div>
+</div>
+
+
+<p-fluid>
+    <form [formGroup]="newUserForm" (ngSubmit)="add($event)" autocomplete="off">
+        <div class="flex mt-8" >
+            <div class="card flex flex-col gap-6 w-full">
+
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="name">Nome</label>
+                        <input pInputText id="name" type="text" formControlName="name"/>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="username">Utilizador</label>
+                        <input pInputText id="username" type="text" formControlName="username" />
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="authority">Perfil</label>
+                        <p-select id="authority"
+                            [options]="perfilUtilizadorItens"
+                            optionLabel="label"
+                            optionValue="value"
+                            placeholder="Selecione um perfil"
+                            class="w-full"
+                            formControlName="authority">
+                        </p-select>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="email">Email</label>
+                        <input pInputText id="email" type="email" formControlName="email" />
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-2">
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <p-button [disabled]="!newUserForm.valid" type="submit" label="Guardar" severity="secondary" raised />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</p-fluid>

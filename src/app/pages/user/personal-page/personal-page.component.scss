@@ -1,0 +1,33 @@
+/* Responsividade para telas pequenas (mobile e tablet) */
+@media (max-width: 767px)
+{
+    /* Alinhar o botão de editar em baixo do texto em telas pequenas */
+    .text-500.mb-5 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .edit-button {
+        margin-top: 10px; /* Adicionar um espaçamento entre o texto e o botão */
+        width: 100%; /* Garantir que o botão ocupe a largura completa */
+        text-align: left; /* Alinhar o texto do botão à esquerda */
+    }
+
+    .list-none {
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Para garantir que o botão de Editar não fique cortado em telas pequenas */
+    .p-button-text {
+        white-space: nowrap; /* Impedir o corte do texto */
+    }
+}
+
+/* Em telas médias (como tablet) */
+@media (max-width: 1024px)
+{
+    .edit-button {
+        width: auto;
+    }
+}

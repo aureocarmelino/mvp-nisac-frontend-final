@@ -1,0 +1,371 @@
+<app-spinner></app-spinner>
+
+<div class="flex flex-col">
+    <div class="card"
+        style="background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%)">
+        <div style="color: whitesmoke" class="font-semibold text-2xl mb-3">Registo Tele Assistência</div>
+        <app-breadcrumb [items]="items"></app-breadcrumb>
+    </div>
+</div>
+
+
+<form [formGroup]="newTeleassistenciaForm" (ngSubmit)="add($event)" autocomplete="off">
+    <div class="flex mt-8" >
+        <div class="card flex flex-col gap-6 w-full">
+
+
+            <div class="flex flex-col md:flex-row gap-6">
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <label for="numeroProcesso">Nº Processo</label>
+                    <input class="w-full" pInputText id="numeroProcesso" type="text"  formControlName="numeroProcesso"  />
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <label for="nomeCompleto">Nome Completo</label>
+                    <input class="w-full" pInputText id="nomeCompleto" type="text"  formControlName="nomeCompleto"  />
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <app-required-label forId="morada" label="Morada" required></app-required-label>
+                    <p-autoComplete  styleClass="w-full" emptyMessage="Nenhum resultado encontrado" id="morada" [suggestions]="filteredMoradas" (completeMethod)="filterMorada($event)"
+                        field="rua" formControlName="morada" placeholder="Selecione a morada" [dropdown]="true" />
+                </div>
+
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-6">
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <label for="idadeMomentoIntervencao">Idade (momento intervenção)</label>
+                    <input class="w-full" pInputText id="idadeMomentoIntervencao"  type="number" formControlName="idadeMomentoIntervencao"/>
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <label for="dataNascimento">Data Nascimento</label>
+                    <p-datepicker styleClass="w-full" [showIcon]="true" [showButtonBar]="true" id="dataNascimento" formControlName="dataNascimento"/>
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <label for="numeroSerieEquipamento">Nº Série Equipamento</label>
+                    <input class="w-full" pInputText id="numeroSerieEquipamento" type="text"  formControlName="numeroSerieEquipamento"  />
+                </div>
+
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex flex-wrap gap-2 w-full">
+                    <app-required-label forId="morada" label="Trabalho Efetuado" required></app-required-label>
+                    <p-select
+                    emptyMessage="Nenhum resultado encontrado"
+                    optionLabel="description"
+                    optionValue="id"
+                    id="trabalhoEfetuado"
+                    [options]="tiposTrabalhosEfectuadosItens" placeholder="Selecione o trabalho efetuado"
+                    formControlName="trabalhoEfetuado"
+                    class="w-full"/>
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <app-required-label forId="morada" label="Tipo de Equipamento" required></app-required-label>
+                    <p-select
+                    emptyMessage="Nenhum resultado encontrado"
+                    optionLabel="description"
+                    optionValue="id"
+                    id="tipoEquipamento"
+                    [options]="tipoEquipamentosItens" placeholder="Selecione o tipo de equipamento"
+                    formControlName="tipoEquipamento"
+                    class="w-full"/>
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <app-required-label forId="morada" label="Tipo de Natureza" required></app-required-label>
+                    <p-select
+                    emptyMessage="Nenhum resultado encontrado"
+                    optionLabel="description"
+                    optionValue="id"
+                    id="tipoNaturezaOcorrencia"
+                    [options]="tipoNaturezasItens" placeholder="Selecione o tipo de Natureza"
+                    formControlName="tipoNaturezaOcorrencia"
+                    class="w-full"/>
+                </div>
+
+
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-6">
+
+
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <label for="numeroPolicia">Nº Policia</label>
+                    <input class="w-full" pInputText id="numeroPolicia" type="text"  formControlName="numeroPolicia"  />
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <label for="fracao">Fração</label>
+                    <input class="w-full" pInputText id="fracao" type="text"  formControlName="fracao"  />
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <label for="telefoneFixo">Telefone Fixo</label>
+                    <input class="w-full" pInputText id="telefoneFixo" type="text"  formControlName="telefoneFixo"  />
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full">
+                    <label for="telemovel">Telemóvel</label>
+                    <input class="w-full" pInputText id="telemovel" type="text"  formControlName="telemovel"  />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-12 md:col-span-4">
+                    <div class="flex flex-col gap-1">
+                        <label for="insalubridadeHabitacional">Insalubridade habitacional</label>
+                        <p-toggleswitch id="insalubridadeHabitacional" formControlName="insalubridadeHabitacional" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="font-semibold text-xl mb-4"></div>
+                <p-tabs value="0">
+                    <p-tablist>
+                        <p-tab value="0">Projeto Radar</p-tab>
+                        <p-tab value="1">Plano Saúde Lisboa 65+</p-tab>
+                        <p-tab value="2">Sinalização</p-tab>
+                    </p-tablist>
+                    <p-tabpanels>
+                        <p-tabpanel value="0">
+
+                            <div class="flex flex-col">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="flex flex-col mb-4 gap-1">
+                                        <label for="idRadar">ID Radar</label>
+                                        <input pInputText id="idRadar" formControlName="idRadar" aria-label="idRadar" />
+                                        <p-message severity="error" variant="simple" size="small">Preencha o campo ID Radar</p-message>
+                                    </div>
+
+                                    <div class="w-full md:w-2/12">
+                                        <p-divider layout="vertical" class="!hidden md:!flex"><b><i class="pi pi-arrow-right-arrow-left"></i></b></p-divider>
+                                        <p-divider layout="horizontal" class="!flex md:!hidden"
+                                            align="center"><b><i class="pi pi-arrows-v"></i></b></p-divider>
+                                    </div>
+                                    <div class=" flex flex-col gap-4">
+                                        <div class="flex flex-wrap gap-6">
+                                            <div class="flex flex-col grow gap-2">
+                                                <label for="entrevistaRadar">Entrevista Radar</label>
+                                                <p-toggleswitch  id="entrevistaRadar" formControlName="entrevistaRadar" aria-label="entrevistaRadar"/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </p-tabpanel>
+
+                        <p-tabpanel value="1">
+                            <div class="flex flex-col">
+                                <div class="flex flex-col md:flex-row">
+
+                                    <div class=" flex flex-col gap-4">
+                                        <div class="flex flex-wrap gap-6">
+                                            <div class="flex flex-col grow  gap-2">
+                                                <label for="numeroPlano">Nº Utente</label>
+                                                <input pInputText id="numeroPlano" formControlName="numeroPlano"  aria-label="numeroPlano" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-full md:w-2/12">
+                                        <p-divider layout="vertical" class="!hidden md:!flex"><b><i class="pi pi-arrow-right-arrow-left"></i></b></p-divider>
+                                        <p-divider layout="horizontal" class="!flex md:!hidden"
+                                            align="center"><b><i class="pi pi-arrows-v"></i></b></p-divider>
+                                    </div>
+
+                                    <div class=" flex flex-col gap-4">
+                                        <div class="flex flex-wrap gap-6">
+                                            <div class="flex flex-col grow gap-2">
+                                                <label for="jaEutentePlano">Já é utente ?</label>
+                                                <p-toggleswitch id="jaEutentePlano" formControlName="jaEutentePlano"  />
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="w-full md:w-2/12">
+                                        <p-divider layout="vertical" class="!hidden md:!flex"><b><i class="pi pi-arrow-right-arrow-left"></i></b></p-divider>
+                                        <p-divider layout="horizontal" class="!flex md:!hidden"
+                                            align="center"><b><i class="pi pi-arrows-v"></i></b></p-divider>
+                                    </div>
+
+                                    <div class=" flex flex-col gap-4">
+                                        <div class="flex flex-wrap gap-6">
+                                            <div class="flex flex-col grow  gap-2">
+                                                <label for="foiRealizadaInscricaoPlano">Foi realizada a inscrição ?</label>
+                                                <p-toggleswitch id="foiRealizadaInscricaoPlano" formControlName="foiRealizadaInscricaoPlano"  />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </p-tabpanel>
+
+                        <p-tabpanel value="2">
+                            <div class="grid grid-cols-12 gap-4">
+
+                                <div class="col-span-12 md:col-span-4">
+                                    <div class="flex flex-col gap-2">
+                                        <label for="foiFeitaSinalizacao">Foi feita a sinalização ?</label>
+                                        <p-select id="foiFeitaSinalizacao" formControlName="foiFeitaSinalizacao" [options]="simOuNaoItens" optionValue="value" optionLabel="label"
+                                        placeholder="Selecione uma opção" class="w-full" />
+                                    </div>
+                                </div>
+
+                                <div class="col-span-12 md:col-span-4">
+
+                                    <div class="flex flex-col gap-2" *ngIf="mostrarComoFoiFeitaSinalizacao">
+                                        <app-required-label forId="comoFoiFeitaSinalizacao" label="Como ?" required></app-required-label>
+
+                                        <p-select id="comoFoiFeitaSinalizacao" formControlName="comoFoiFeitaSinalizacao"  [options]="comoFoiFeitaSinalizacaoItens" optionValue="value" optionLabel="label"
+                                        placeholder="Selecione uma opção" class="w-full" />
+
+                                        <span style="cursor: pointer" *ngIf="mostrarCardAtividadesCriadasSinalizacaoViaRadar">
+                                            <p-message severity="error" variant="outlined" size="small" (click)="openAtividadesCriadasSinalizacaoViaRadarDialog()" >
+                                                <i  class="pi pi-info-circle"></i>  Clique aqui para preencher as atividades criadas !
+                                            </p-message>
+                                        </span>
+
+                                        <span style="cursor: pointer" *ngIf="mostrarCardInformacoesInstituicaoSinalizacaoViaPresencial">
+                                            <p-message severity="error" variant="outlined" size="small" (click)="openInformacoesInstituicaoSinalizacaoViaPresencialDialog()" >
+                                                <i  class="pi pi-info-circle"></i>  Clique aqui para preencher as informações da instituição !
+                                            </p-message>
+                                        </span>
+
+                                        <p-dialog [closable]="false" header="Atividades criadas em sinalização - Via Radar" [(visible)]="mostrarAtividadesCriadasSinalizacaoViaRadarDialog" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '30vw' }" [modal]="true">
+
+
+                                            <div class="grid grid-cols-12 gap-4 mt-5">
+                                                <div class="col-span-12 md:col-span-12">
+                                                    <form [formGroup]="comoFoiFeitaSinalizacaoViaRadarForm">
+                                                        <div formArrayName="atividadesCriadasSinalizacaoViaRadar">
+                                                            <div *ngFor="let atividade of formAtividadesCriadasSinalizacaoViaRadar.controls; let i = index" [formGroupName]="i" class="atividade mb-4">
+
+                                                                <div class="flex flex-col md:flex-row items-start gap-4 w-full">
+
+
+                                                                    <div class="flex flex-col w-full md:w-1/2">
+                                                                    <input type="text" pInputText formControlName="tipoAtividadeCriada" placeholder="Tipo da Atividade" />
+                                                                    <p-message *ngIf="atividade.get('tipoAtividadeCriada')?.invalid" severity="error" variant="simple" size="small">
+                                                                        Campo obrigatório *
+                                                                    </p-message>
+                                                                    </div>
+
+
+                                                                    <div class="flex flex-col w-full md:w-1/2">
+                                                                    <input type="text" pInputText formControlName="entidade" placeholder="Entidade" />
+                                                                    <p-message *ngIf="atividade.get('entidade')?.invalid" severity="error" variant="simple" size="small">
+                                                                        Campo obrigatório *
+                                                                    </p-message>
+                                                                    </div>
+
+
+                                                                    <button pButton type="button" icon="pi pi-times" class="p-button-danger" (click)="removerAtividade(i)"></button>
+
+                                                                </div>
+                                                                </div>
+
+                                                        </div>
+
+                                                        <button [disabled]="!ultimaAtividadeEhValida()" pButton type="button" label="Adicionar Atividade" icon="pi pi-plus" (click)="adicionarAtividade()"></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+
+                                            <ng-template #footer>
+                                                <p-button label="Cancelar" severity="danger"  icon="pi pi-times" text (click)="closeAtividadesCriadasSinalizacaoViaRadarDialog($event)" />
+                                                <p-button label="Guardar" icon="pi pi-check" (click)="closeAtividadesCriadasSinalizacaoViaRadarDialog()" />
+                                            </ng-template>
+                                        </p-dialog>
+
+                                        <p-dialog [closable]="false" header="Informações Instituição - Via Presencial" [(visible)]="mostrarInformacoesInstituicaoSinalizacaoViaPresencialDialog" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '30vw' }" [modal]="true">
+
+
+                                            <div class="grid grid-cols-12 gap-4 mt-5">
+                                                <div class="col-span-12 md:col-span-12">
+                                                    <form [formGroup]="comoFoiFeitaSinalizacaoViaPresencialForm">
+                                                        <div formArrayName="informacaoInstituicaoSinalizacaoViaPresencial">
+                                                            <div *ngFor="let informacoesInstituicao of formInformacoesInstituicaoSinalizacaoPresencial.controls; let i = index" [formGroupName]="i" class="atividade mb-4">
+
+                                                                <div class="flex flex-col md:flex-row items-start gap-4 w-full">
+
+
+                                                                    <div class="flex flex-col w-full md:w-1/2">
+                                                                    <input type="text" pInputText formControlName="nomeInstituicao" placeholder="Instituição"/>
+                                                                    <p-message *ngIf="informacoesInstituicao.get('nomeInstituicao')?.invalid" severity="error" variant="simple" size="small">
+                                                                        Campo obrigatório *
+                                                                    </p-message>
+                                                                    </div>
+
+
+                                                                    <div class="flex flex-col w-full md:w-1/2">
+                                                                    <input type="text" pInputText formControlName="nomeResponsavel" placeholder="Responsável"/>
+                                                                    <p-message *ngIf="informacoesInstituicao.get('nomeResponsavel')?.invalid" severity="error" variant="simple" size="small">
+                                                                        Campo obrigatório *
+                                                                    </p-message>
+                                                                    </div>
+
+
+                                                                    <button pButton type="button" icon="pi pi-times" class="p-button-danger" (click)="removerInformacaoInstituicao(i)"></button>
+
+                                                                </div>
+                                                                </div>
+
+                                                        </div>
+
+                                                        <button [disabled]="!ultimaInformacaoInstituicaoEhValida()" pButton type="button" label="Adicionar Informação" icon="pi pi-plus" (click)="adicionarInformacaoInstituicao()"></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+
+                                            <ng-template #footer>
+                                                <p-button label="Cancelar" severity="danger"  icon="pi pi-times" text (click)="closeInformacoesInstituicaoSinalizacaoViaPresencialDialog($event)" />
+                                                <p-button label="Guardar" icon="pi pi-check" (click)="closeInformacoesInstituicaoSinalizacaoViaPresencialDialog()" />
+                                            </ng-template>
+                                        </p-dialog>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </p-tabpanel>
+
+                    </p-tabpanels>
+                </p-tabs>
+            </div>
+
+
+            <div class="flex flex-wrap gap-2 w-full">
+                <label for="observacoes">Observações</label>
+                <textarea class="w-full" rows="5" id="observacoes" formControlName="observacoes" cols="30" pTextarea></textarea>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-2">
+                <div class="flex flex-wrap gap-2 w-full">
+                    <p-button [disabled]="!newTeleassistenciaForm.valid" type="submit" label="Guardar" severity="secondary" raised />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
+
+
+

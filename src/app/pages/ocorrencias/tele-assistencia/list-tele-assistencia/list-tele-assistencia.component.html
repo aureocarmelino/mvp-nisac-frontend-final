@@ -1,0 +1,86 @@
+
+
+  <div class="grid">
+    <div class="col-12">
+      <div class="card" style="
+          background: radial-gradient(
+            circle at 1.8% 4.8%,
+            rgb(17, 23, 58) 0%,
+            rgb(58, 85, 148) 90%
+          );
+        ">
+        <h4 style="color: whitesmoke">Listagem de Tele Assistência</h4>
+        <app-breadcrumb [items]="items"></app-breadcrumb>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col-12">
+      <div class="card">
+        <!--h5>Filter Menu</h5-->
+        <p-table [lazy]="true" (onLazyLoad)="loadTeleAssistencia($event)" [totalRecords]="total" [loading]="loading"
+          #table [value]="teleAssistenciaList" dataKey="id" [rows]="5" [rowsPerPageOptions]="[5, 10, 15, 20]"
+          [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="[
+            'tipoOcorrencia',
+            'local',
+            'motivo',
+            'observacoes',
+            'status',
+            'creationDate'
+          ]" responsiveLayout="scroll">
+
+          <!-- Cabeçalho -->
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Tipo de Natureza</th>
+              <th>Morada</th>
+              <th>Freguesia</th>
+              <th>Nome Completo</th>
+              <th>Data Criação</th>
+              <th>Estado</th>
+              <th>Detalhe</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-teleassistencia>
+            <tr>
+              <td>
+                {{ teleassistencia?.tipoNaturezaOcorrencia?.description }}
+              </td>
+              <td>
+                {{ teleassistencia?.morada?.rua }}
+              </td>
+              <td>
+                {{ teleassistencia?.morada?.freguesia?.description }}
+              </td>
+              <td>{{ teleassistencia.nomeCompleto ? teleassistencia.nomeCompleto : '-' }}</td>
+              <td>{{ teleassistencia.creationDate | date: 'dd/MM/yyyy HH:mm' }}</td>
+              <td class="text-center">
+                <i class="pi" [ngClass]="{
+                    'true-icon pi-check-circle text-green-500':
+                      teleassistencia.status,
+                    'false-icon pi-times-circle text-pink-500':
+                      !teleassistencia.status
+                  }"></i>
+              </td>
+              <td (click)="goToDetail(teleassistencia.id)" style="cursor: pointer" class="text-center">
+                <i class="pi pi-eye" style="color: slateblue"></i>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="8">Nenhuma teleassistência encontrada.</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="loadingbody">
+            <tr>
+              <td colspan="8">
+                Carregando lista de teleassistências. Por favor aguarde.
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>

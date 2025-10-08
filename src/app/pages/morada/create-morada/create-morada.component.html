@@ -1,0 +1,49 @@
+<app-spinner></app-spinner>
+
+<div class="flex flex-col">
+    <div class="card"
+        style="background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%)">
+        <div style="color: whitesmoke" class="font-semibold text-2xl mb-3">Registo de Morada</div>
+        <app-breadcrumb [items]="items"></app-breadcrumb>
+    </div>
+</div>
+
+
+
+<p-fluid>
+    <form [formGroup]="newMoradaForm" (ngSubmit)="add($event)" autocomplete="off">
+        <div class="flex mt-8" >
+            <div class="card flex flex-col gap-6 w-full">
+
+
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="freguesia">Freguesia</label>
+                        <p-autoComplete
+                            id="freguesia"
+                            class="w-full"
+                            [suggestions]="filteredFreguesias"
+                            (completeMethod)="filterFreguesia($event)"
+                            field="description"
+                            formControlName="freguesia"
+                            placeholder="Selecione a freguesia"
+                            [dropdown]="true">
+                        </p-autoComplete>
+
+                      </div>
+
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label for="rua">Rua</label>
+                        <input pInputText id="rua" type="text" formControlName="rua" />
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-2">
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <p-button [disabled]="!newMoradaForm.valid" type="submit" label="Guardar" severity="secondary" raised />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</p-fluid>

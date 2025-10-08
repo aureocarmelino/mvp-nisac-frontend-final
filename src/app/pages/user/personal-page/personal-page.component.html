@@ -1,0 +1,188 @@
+
+<ng-container *ngIf="auth?.jwtPayload?.logged; else loadingTemplate">
+    <div class="p-6">
+      <h2 class="text-3xl font-semibold text-gray-900 mb-4">Perfil</h2>
+
+      <div class="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 mb-6 space-y-2 md:space-y-0">
+        <p>
+          Aqui você pode visualizar suas informações. Mantenha seu perfil sempre atualizado,
+          e entre em contato com o Administrador para actualização de informações.
+        </p>
+
+        <!--ng-container *ngIf="user.authority === 'ADMIN'">
+          <button
+            (click)="showDialog()"
+            pButton
+            label="Editar"
+            icon="pi pi-pencil"
+            class="p-button p-button-sm p-button-text"
+          ></button>
+        </ng-container -->
+      </div>
+
+      <ul class="divide-y divide-gray-200">
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Perfil</div>
+          <div
+            class="w-full md:w-3/4 text-gray-900 font-semibold"
+            [ngClass]="'usernisac-badge status-' + (user?.authority || 'unknown')"
+          >
+            {{ user.authority === 'ADMIN' ? 'ADMINISTRADOR' : 'UTILIZADOR NISAC' }}
+          </div>
+        </li>
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Nome</div>
+          <div class="w-full md:w-3/4 text-gray-900">{{ user?.name }}</div>
+        </li>
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Email</div>
+          <div class="w-full md:w-3/4 text-gray-900">{{ user?.email }}</div>
+        </li>
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Utilizador</div>
+          <div class="w-full md:w-3/4 text-gray-900">{{ user?.username }}</div>
+        </li>
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Estado</div>
+          <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+            <i
+              class="pi"
+              [ngClass]="{
+                'pi-check-circle text-green-500': user?.status,
+                'pi-times-circle text-red-500': !user?.status
+              }"
+            ></i>
+            <span class="text-green-500"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+</ng-container>
+
+<ng-template #loadingTemplate>
+<p class="text-center text-gray-500">Informações do utilizador não disponíveis. Actualize a página por favor !</p>
+    <!--app-spinner/-->
+</ng-template>
+
+
+
+
+
+
+<p-dialog
+  (onHide)="onDialogClose()"
+  header="Editar Perfil"
+  [modal]="true"
+  [(visible)]="visibleDialog"
+  [style]="{ width: '55rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <p class="text-gray-500 mb-6">Actualize as suas informações</p>
+
+  <!-- Toggle Editar Palavra Passe -->
+  <div class="flex items-center mb-6">
+    <label
+      for="editarPalavraPassCheck"
+      class="text-red-500 font-semibold mr-4"
+    >
+      Editar Palavra Passe
+    </label>
+    <p-inputSwitch
+      id="editarPalavraPassCheck"
+      [(ngModel)]="editarPalavraPassaCheck"
+      (onChange)="resetEditarPalavaraPasse()"
+    ></p-inputSwitch>
+  </div>
+
+  <!-- Formulário de dados do usuário -->
+  <div *ngIf="!editarPalavraPassaCheck; else passwordFormTemplate">
+    <form [formGroup]="newUserForm" (ngSubmit)="updateUser($event)" autocomplete="off">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+          <input pInputText id="name" type="text" formControlName="name" class="w-full" />
+        </div>
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Utilizador</label>
+          <input pInputText id="username" type="text" formControlName="username" class="w-full" />
+        </div>
+        <div>
+          <label for="authority" class="block text-sm font-medium text-gray-700 mb-1">Perfil</label>
+          <p-dropdown
+            id="authority"
+            [options]="perfilUtilizadorItens"
+            placeholder="Selecione um perfil"
+            formControlName="authority"
+            class="w-full"
+          ></p-dropdown>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <input pInputText id="email" type="email" formControlName="email" class="w-full" />
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          [disabled]="!newUserForm.valid"
+          pButton
+          label="Editar"
+          class="bg-gradient-to-r from-blue-900 to-blue-600 text-white"
+        ></button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Template de alteração de senha -->
+  <ng-template #passwordFormTemplate>
+    <form [formGroup]="passwordForm" (ngSubmit)="updatePassword($event)" autocomplete="off">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label for="currentPassword" class="block text-sm font-medium text-gray-700 mb-1">Password Atual</label>
+          <input
+            pInputText
+            id="currentPassword"
+            type="password"
+            formControlName="currentPassword"
+            class="w-full"
+          />
+        </div>
+        <div>
+          <label for="newPassword" class="block text-sm font-medium text-gray-700 mb-1">Nova Password</label>
+          <input
+            pInputText
+            id="newPassword"
+            type="password"
+            formControlName="newPassword"
+            class="w-full"
+          />
+        </div>
+        <div>
+          <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirmar Nova Password</label>
+          <input
+            pInputText
+            id="confirmPassword"
+            type="password"
+            formControlName="confirmPassword"
+            class="w-full"
+          />
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          [disabled]="!passwordForm.valid"
+          pButton
+          label="Editar Password"
+          class="bg-gradient-to-r from-blue-900 to-blue-600 text-white"
+        ></button>
+      </div>
+    </form>
+  </ng-template>
+</p-dialog>
+
+
+
+

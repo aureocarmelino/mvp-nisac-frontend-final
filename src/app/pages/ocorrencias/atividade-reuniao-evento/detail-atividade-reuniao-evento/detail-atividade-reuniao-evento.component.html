@@ -1,0 +1,81 @@
+<ng-container *ngIf="atividadeReuniaoEvento; else loadingTemplate">
+
+    <div class="p-6">
+        <h2 class="text-3xl font-semibold text-gray-900 mb-4">Detalhe - Apoio Social</h2>
+
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 mb-6 space-y-2 md:space-y-0">
+            <p>Aqui você pode visualizar os detalhes das atividades, reuniões e eventos.</p>
+        </div>
+
+        <ul class="divide-y divide-gray-200">
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Grupo de ocorrência</div>
+                <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ atividadeReuniaoEvento.tipoNaturezaOcorrencia.grupoNaturezaOcorrencia.description }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Tipo de Natureza</div>
+                <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ atividadeReuniaoEvento.tipoNaturezaOcorrencia.description }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Tipo Atividade, Reunião e Evento</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ atividadeReuniaoEvento.acaoSubTipoAtividadeReuniaoEvento.tipoAtividadeReuniaoEvento.description }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Ação - Tipo</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ atividadeReuniaoEvento.acaoSubTipoAtividadeReuniaoEvento.description }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Exêmplos ou Referências</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ atividadeReuniaoEvento.exemplosOuReferencias }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Representantes Nisac</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ atividadeReuniaoEvento.representantesNisac }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Representantes Externos</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ atividadeReuniaoEvento.representantesExternos }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Entidade Promotora do Evento</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ atividadeReuniaoEvento.entidadePromotoraEvento }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Responsâvel Entidade Promotora do Evento</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ atividadeReuniaoEvento.responsavelEntidadePromotoraEvento }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Local</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ atividadeReuniaoEvento.local }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Número Ata</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ atividadeReuniaoEvento.numeroActa }}</div>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+
+    <div class="mt-6">
+        <p-button (click)="goBack()" label="Listagem" icon="pi pi-arrow-left"></p-button>
+    </div>
+
+</ng-container>
+
+<ng-template #loadingTemplate>
+    <p class="text-center text-gray-500">Informações do apoio social não disponíveis.</p>
+</ng-template>

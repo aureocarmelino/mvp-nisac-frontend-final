@@ -1,0 +1,180 @@
+<div class="flex flex-col">
+    <div class="card" style="background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%);">
+        <div style="color: whitesmoke;" class="font-semibold text-2xl mb-3">Estatística RSBL</div>
+        <app-breadcrumb [items]="items"></app-breadcrumb>
+    </div>
+</div>
+
+<br>
+
+<form [formGroup]="pesquisaAvancaRsblForm" (ngSubmit)="pesquisar()" autocomplete="off">
+    <div class="flex mt-4">
+      <div class="card flex flex-col gap-4 w-full p-4">
+
+        <div class="font-semibold text-lg mb-2">Filtros de Pesquisa RSBL</div>
+
+        <div class="flex flex-wrap gap-4 items-start">
+          <div class="flex flex-col gap-1 w-auto">
+            <label for="dataInicio" class="text-sm">Data Início</label>
+            <p-datepicker class="w-40" [showIcon]="true" [showButtonBar]="true" id="dataInicio" formControlName="dataInicio"/>
+          </div>
+
+          <div class="flex flex-col gap-1 w-auto">
+            <label for="dataFim" class="text-sm">Data Fim</label>
+            <p-datepicker class="w-40"  [showIcon]="true" [showButtonBar]="true" id="dataFim" formControlName="dataFim"/>
+          </div>
+
+          <div class="flex flex-col gap-1 w-auto">
+            <label for="nomeCompleto" class="text-sm">Nome Completo</label>
+            <input class="w-40"  pInputText id="nomeCompleto" type="text" formControlName="nomeCompleto"   />
+          </div>
+
+        </div>
+
+
+        <div class="flex justify-end" >
+          <p-button type="submit" label="Pesquisar" severity="secondary" (click)="pesquisar()" raised />
+        </div>
+
+      </div>
+    </div>
+</form>
+
+<div *ngIf="resumoRsbl ; else emptyBlock">
+
+    <p-fluid class="grid grid-cols-12 gap-8 mt-5">
+
+        <div class="col-span-12 lg:col-span-6 xl:col-span-3">
+            <div class="card mb-0">
+                <div class="flex justify-between mb-4">
+                    <div>
+                        <span class="block text-muted-color font-medium mb-4"><Strong>TOTAL GRUPOS NATUREZAS</Strong></span>
+                        <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">{{totalGrupoNaturezas}}</div>
+                    </div>
+                    <div class="flex items-center justify-center bg-gray-100 dark:bg-gray-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
+                        <i class="pi pi-comment text-purple-500 !text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-12 lg:col-span-6 xl:col-span-3">
+            <div class="card mb-0">
+                <div class="flex justify-between mb-4">
+                    <div>
+                        <span class="block text-muted-color font-medium mb-4"><Strong>TOTAL ATIVIDADES COMPLEMENTARES</Strong></span>
+                        <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">{{totalAtividadesComplementares}}</div>
+                    </div>
+                    <div class="flex items-center justify-center bg-gray-100 dark:bg-gray-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
+                        <i class="pi pi-comment text-purple-500 !text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-12 lg:col-span-6 xl:col-span-3">
+            <div class="card mb-0">
+                <div class="flex justify-between mb-4">
+                    <div>
+                        <span class="block text-muted-color font-medium mb-4"><Strong>TOTAL GERAL</Strong></span>
+                        <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">{{totalGeral}}</div>
+                    </div>
+                    <div class="flex items-center justify-center bg-gray-100 dark:bg-gray-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
+                        <i class="pi pi-comment text-purple-500 !text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-fluid>
+    <br>
+    <p-divider />
+
+    <div class="card">
+
+        <p-table  styleClass="p-datatable-sm p-datatable-gridlines" [value]="resumoRsbl.gruposNaturezas" dataKey="id" [tableStyle]="{ 'min-width': '60rem' }" [expandedRowKeys]="expandedRows"  >
+
+            <!--ng-template pTemplate="caption">
+                <div class="flex flex-wrap justify-content-end gap-2">
+                    <p-button label="Expandir" icon="pi pi-plus" text (onClick)="expandAll()" />
+                    <p-button label="Fechar" icon="pi pi-minus" text (onClick)="collapseAll()" />
+                </div>
+            </ng-template -->
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 5rem"></th>
+                    <th>Grupo de Natureza</th>
+                    <th>Total</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-resumorsbl let-expanded="expanded">
+                <tr>
+                    <td>
+                        <ng-container *ngIf="resumorsbl.tiposDeNatureza?.length" >
+                            <p-button
+                            type="button"
+                            pRipple
+                            [pRowToggler]="resumorsbl"
+                            [text]="true"
+                            [rounded]="true"
+                            [plain]="true"
+                            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+                            />
+                        </ng-container>
+                    </td>
+                    <td>{{ resumorsbl.grupo }}</td>
+                    <td><Strong>{{ resumorsbl.total }}</Strong></td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="expandedrow" let-resumorsbl>
+                <tr>
+                    <td colspan="7">
+                        <div class="p-3">
+                            <p-table styleClass="p-datatable-sm p-datatable-gridlines" [value]="resumorsbl.tiposDeNatureza" dataKey="id">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Tipo de Natureza</th>
+                                        <th>Quantidade</th>
+                                        <th style="width: 4rem"></th>
+                                    </tr>
+                                </ng-template>
+
+                                <ng-template pTemplate="body" let-tiponatureza>
+                                    <tr>
+                                        <td>{{ tiponatureza.descricao }}</td>
+                                        <td>{{ tiponatureza.quantidade }}</td>
+                                    </tr>
+                                </ng-template>
+
+                                <ng-template pTemplate="emptymessage">
+                                    <tr>
+                                        <td colspan="6">Sem tipos de naturezas !</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+</div>
+<ng-template #emptyBlock>
+    <!--p-toast></p-toast-->
+    <div class="card text-center mt-5">
+      <p class="text-gray-500 text-lg">Nenhum resultado encontrado.</p>
+    </div>
+  </ng-template>
+
+
+
+
+
+
+<!--div class="flex justify-end">
+    <button pButton type="button" label="Pesquisar" icon="pi pi-search" class="p-button-primary" (click)="pesquisar()"></button>
+</div-->
+
+
+

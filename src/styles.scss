@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+@use './tailwind.css';
+@use './assets/layout/layout.scss';
+@use 'primeicons/primeicons.css';
+@use './assets/demo/demo.scss';
+
+@use '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+
+@import "../node_modules/ngx-toastr/toastr.css";
+
+@import "../node_modules/ngx-spinner/animations/square-jelly-box.css";
+
+//@import "../node_modules/primeflex/primeflex.min.css";
+
+
+
+/* Centralizar o texto de todas as células do cabeçalho
+.p-datatable th {
+    text-align: center !important;
+  }
+
+  /* Centralizar o texto de todas as células do corpo
+  .p-datatable td {
+    text-align: center !important;
+  }
+
+
+  .standard-background-blue
+  {
+    background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%);
+  }
+
+  .usernisac-badge
+  {
+      border-radius: var(--border-radius);
+      padding: .25em .5rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .3px;
+  }
+
+  .usernisac-badge
+  {
+      &.status-ADMIN
+      {
+          background: #C8E6C9;
+          color: #256029;
+      }
+
+      &.status-DEFAULT
+      {
+          background: #B3E5FC;
+          color: #23547B;
+      }
+  }
+
+*/
+
+
+
+
+
+
+  /* CARD OPTIONS */
+
+.card-icon
+{
+    font-size: 20px;
+    line-height: 0;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.apoio-social-card .card-icon
+{
+    color: #4154f1;
+    background: #f6f6fe;
+}
+
+
+.teleassistencia-card .card-icon
+{
+    color: #2eca6a;
+    background: #e0f8e9;
+}
+
+.saidas-com-abtm-card .card-icon
+{
+    color: #ff771d;
+    background: #ffecdf;
+}
+

@@ -1,0 +1,42 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card" style="background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%);">
+            <h4 style="color: whitesmoke">Atividades, Reuniões e Eventos</h4>
+            <app-breadcrumb [items]="items"></app-breadcrumb>
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="grid">
+
+    <div class="col-6 lg:col-6 xl:col-3">
+        <div class="card mb-0" style="cursor: pointer;" routerLink="/ocorrencia/atividades-reunioes-eventos/registo">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <h4 class="block text-900 font-medium mb-3">Registar</h4>
+                    <div class="text-900 font-medium text-xl"><i style="color: #ff771d;" class="bi bi-plus-square text-xl"></i></div>
+                </div>
+                <div style="background-color: #ffecdf;" class="flex align-items-center justify-content-center  border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                    <i style="color: #ff771d;" class="bi bi-bus-front text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6 lg:col-6 xl:col-3">
+        <div class="card mb-0" style="cursor: pointer;" routerLink="/ocorrencia/atividades-reunioes-eventos/listagem">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <h4 class="block text-900 font-medium mb-3">Listar</h4>
+                    <div class="text-900 font-medium text-xl"><i style="color: #ff771d;" class="bi bi-list-columns-reverse text-xl"></i></div>
+                </div>
+                <div style="background-color: #ffecdf;" class="flex align-items-center justify-content-center  border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                    <i style="color: #ff771d;" class="bi bi-bus-front text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>

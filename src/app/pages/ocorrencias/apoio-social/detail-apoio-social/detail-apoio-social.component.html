@@ -1,0 +1,291 @@
+<ng-container *ngIf="apoioSocial; else loadingTemplate">
+
+    <div class="p-6">
+        <h2 class="text-3xl font-semibold text-gray-900 mb-4">Detalhe - Apoio Social</h2>
+
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 mb-6 space-y-2 md:space-y-0">
+            <p>Aqui você pode visualizar os detalhes do apoio social.</p>
+        </div>
+
+        <ul class="divide-y divide-gray-200">
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Grupo de ocorrência</div>
+                <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ apoioSocial.tipoNaturezaOcorrencia.grupoNaturezaOcorrencia.description }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Tipo de Natureza</div>
+                <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ apoioSocial.tipoNaturezaOcorrencia.description }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Nome Completo</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.nomeCompleto }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Gênero</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.genero }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Idade ( No momento da intervenção )</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.idadeMomentoIntervencao }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Nascimento</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.dataNascimento }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500">Morada</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.morada.rua }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Número Pólicia</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.numeroPolicia }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Fração</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.fracao }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Telefone</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.telefone }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">No seguimento da ocorrência Nº</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.noSeguimentoDaOcorrenciaNumero }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Kit Emergência Social</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': apoioSocial.kitEmergenciaSocial,
+                        'pi-times-circle text-red-500': !apoioSocial.kitEmergenciaSocial
+                    }"
+                    ></i>
+
+                </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Total Kit Emergência</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.quantidadeKitEmergenciaSocial }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Monitorização</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': apoioSocial.monitorizacao,
+                        'pi-times-circle text-red-500': !apoioSocial.monitorizacao
+                    }"
+                    ></i>
+
+                </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Insalubridade Habitacional</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': apoioSocial.insalubridadeHabitacional,
+                        'pi-times-circle text-red-500': !apoioSocial.insalubridadeHabitacional
+                    }"
+                    ></i>
+
+                </div>
+            </li>
+
+
+
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+            <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Criação</div>
+            <div class="w-full md:w-3/4 text-gray-900">
+                {{ apoioSocial.creationDate | date: 'dd/MM/yyyy HH:mm' }}
+            </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+            <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Actualização</div>
+            <div class="w-full md:w-3/4 text-gray-900">
+                {{ apoioSocial.updateDate | date: 'dd/MM/yyyy HH:mm' }}
+            </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+            <div class="w-full md:w-1/4 text-gray-500 font-medium">Estado</div>
+            <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                <i
+                class="pi"
+                [ngClass]="{
+                    'pi-check-circle text-green-500': apoioSocial.status,
+                    'pi-times-circle text-red-500': !apoioSocial.status
+                }"
+                ></i>
+                <span class="font-semibold" [ngClass]="apoioSocial.status ? 'text-green-500' : 'text-red-500'">
+                {{ apoioSocial.status ? 'Activo' : 'Inactivo' }}
+                </span>
+            </div>
+            </li>
+        </ul>
+
+
+    </div>
+
+    <div class="p-6">
+        <h2 class="text-2xl  text-gray-900 mb-4">Projeto Radar</h2>
+
+        <ul class="divide-y divide-gray-200">
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Número Radar</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.projetoRadar.idRadar }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Entrevista Radar</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': apoioSocial.projetoRadar.entrevistaRadar,
+                        'pi-times-circle text-red-500': !apoioSocial.projetoRadar.entrevistaRadar
+                    }"
+                    ></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="p-6">
+        <h2 class="text-2xl  text-gray-900 mb-4">Quadro STA</h2>
+        <ul class="divide-y divide-gray-200">
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Número Processo</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.quadroSta.numeroProcessoSta }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Necessita Sta</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': apoioSocial.quadroSta.necessitaSta,
+                        'pi-times-circle text-red-500': !apoioSocial.quadroSta.necessitaSta
+                    }"
+                    ></i>
+                </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Reune Requisitos</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': apoioSocial.quadroSta.reuneRequisitosNecessitaSta,
+                        'pi-times-circle text-red-500': !apoioSocial.quadroSta.reuneRequisitosNecessitaSta
+                    }"
+                    ></i>
+                </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">
+                    <label>Motivo de não reunir requisitos</label>
+                </div>
+                <div class="w-full md:w-3/4 text-gray-900">
+                    <textarea class="w-full" rows="8" pTextarea disabled  readonly  [ngModel]="apoioSocial.quadroSta.motivoNaoReunirRequisitosSta"></textarea>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="p-6">
+        <h2 class="text-2xl  text-gray-900 mb-4">Plano Saúde Lisboa 65+</h2>
+        <ul class="divide-y divide-gray-200">
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Número Plano</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.planoSaudeLisboa65Mais.numeroPlano }}</div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Ja é utente</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': apoioSocial.planoSaudeLisboa65Mais.jaEutentePlano,
+                        'pi-times-circle text-red-500': !apoioSocial.planoSaudeLisboa65Mais.jaEutentePlano
+                    }"
+                    ></i>
+                </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Foi realizada a inscrição</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': apoioSocial.planoSaudeLisboa65Mais.foiRealizadaInscricaoPlano,
+                        'pi-times-circle text-red-500': !apoioSocial.planoSaudeLisboa65Mais.foiRealizadaInscricaoPlano
+                    }"
+                    ></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="p-6">
+        <h2 class="text-2xl  text-gray-900 mb-4">Sinalização</h2>
+        <ul class="divide-y divide-gray-200">
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Foi feita a sinalização</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                    class="pi"
+                    [ngClass]="{
+                        'pi-check-circle text-green-500': apoioSocial.sinalizacao.foiFeitaSinalizacao,
+                        'pi-times-circle text-red-500': !apoioSocial.sinalizacao.foiFeitaSinalizacao
+                    }"
+                    ></i>
+                </div>
+            </li>
+
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Como foi feita a sinalização</div>
+                <div class="w-full md:w-3/4 text-gray-900">{{ apoioSocial.sinalizacao.comoFoiFeitaSinalizacao }}</div>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <div class="mt-6">
+        <p-button (click)="goBack()" label="Listagem" icon="pi pi-arrow-left"></p-button>
+    </div>
+
+</ng-container>
+
+<ng-template #loadingTemplate>
+    <p class="text-center text-gray-500">Informações do apoio social não disponíveis.</p>
+</ng-template>
