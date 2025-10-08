@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/components/required-label/required-label.component.scss"],
-  "sourcesContent": [".required-label\r\n{\r\n    font-weight: 500;\r\n}\r\n\r\n.text-red-500\r\n{\r\n    color: red;\r\n}\r\n"],
-  "mappings": ";AAAA,CAAA;AAEI,eAAA;;AAGJ,CAAA;AAEI,SAAA;;",
-  "names": []
-}
