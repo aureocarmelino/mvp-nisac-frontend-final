@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { TipoOcorrenciaResponse } from '../models/httpResponse/TipoOcorrenciaResponse';
 import { CreateTipoOcorrenciaDto } from '../models/dto/CreateTipoOcorrenciaDto';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'

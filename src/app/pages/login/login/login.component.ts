@@ -49,10 +49,12 @@ export class LoginComponent
           this.spinner.hide();
           this.toastr.success('Utilizador autenticado', 'Sucesso', {
             progressBar: true,
-            timeOut: 9000,
+            timeOut: 5000,
           });
 
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/').then(() => {
+             window.location.reload();
+          })
         },
         error: (err: any) =>
         {

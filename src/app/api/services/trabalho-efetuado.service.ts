@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreateTrabalhoEfetuadoDto } from '../models/dto/CreateTrabalhoEfetuadoDto';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { TrabalhoEfetuado } from '../models/entity/TrabalhoEfetuado';
 import { TrabalhoEfetuadoResponse } from '../models/httpResponse/TrabalhoEfetuadoResponse';

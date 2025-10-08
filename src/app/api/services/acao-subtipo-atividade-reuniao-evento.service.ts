@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { AcaoSubTipoAtividadeReuniaoEvento } from '../models/entity/AcaoSubTipoAtividadeReuniaoEvento';
 import { Observable } from 'rxjs';

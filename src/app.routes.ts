@@ -364,6 +364,7 @@ export const appRoutes: Routes =
         path: 'login',
         title: "Login",
         component: LoginComponent,
+        canActivate: [nisacAuthGuard]
         //canActivate: [nisacAuthGuard]
     },
     {

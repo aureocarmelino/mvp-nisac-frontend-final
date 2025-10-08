@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CreateTipoEquipamentoDto } from '../models/dto/CreateTipoEquipamentoDto';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { TipoEquipamento } from '../models/entity/TipoEquipamento';
 import { TipoEquipamentoResponse } from '../models/httpResponse/TipoEquipamentoResponse';

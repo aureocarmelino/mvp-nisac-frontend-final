@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { AtividadeReuniaoEvento } from '../models/entity/AtividadeReuniaoEvento';
 import { Observable } from 'rxjs';
 import { AtividadeReuniaoEventoResponse } from '../models/httpResponse/AtividadeReuniaoEventoResponse';

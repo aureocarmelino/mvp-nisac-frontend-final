@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CreateApoioSocialDto } from '../models/dto/CreateApoioSocialDto';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { ApoioSocialResponse } from '../models/httpResponse/ApoioSocialResponse';
 import { ApoioSocial } from '../models/entity/ApoioSocial';
 

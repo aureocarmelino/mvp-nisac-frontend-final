@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { CreateAtividadeComplementarDto } from '../models/dto/CreateAtividadeComplementarDto';
 import { Observable } from 'rxjs';
 import { AtividadeComplementarResponse } from '../models/httpResponse/AtividadeComplementarResponse';
