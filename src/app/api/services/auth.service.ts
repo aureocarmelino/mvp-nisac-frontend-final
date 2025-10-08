@@ -127,22 +127,25 @@ export class AuthService
 
     localStorage.setItem('token', token);
 
-    // 🔹 Atualiza o BehaviorSubject
-    this.currentUserSubject.next(this.jwtPayload?.logged || null);
+     // ✅ Atualiza o BehaviorSubject com o usuário logado
+    const user = this.jwtPayload?.logged || null;
+    this.currentUserSubject.next(user);
   }
 
-  public loadToken()
-  {
-
-    console.log("LOAD TOKEN")
+  public loadToken() {
     const token = localStorage.getItem('token');
+    console.log('LOAD TOKEN', token ? 'token encontrado' : 'sem token');
 
-     if (token) {
-        this.storeToken(token); // já emite para o BehaviorSubject
+    if (token) {
+      this.jwtPayload = this.jwtHelper.decodeToken(token);
+      const user = this.jwtPayload?.logged || null;
+      console.log('User carregado do token:', user);
+      this.currentUserSubject.next(user); // ✅ importante: emite mesmo ao recarregar a página
     } else {
-        this.currentUserSubject.next(null);
+      this.currentUserSubject.next(null);
     }
   }
+
 
   clearAccessToken()
   {
@@ -153,10 +156,12 @@ export class AuthService
     this.jwtPayload = null;
     console.log("TOKEN LIMPO")
 
-    alert(this.jwtPayload);
+   // alert(this.jwtPayload);
 
     // 🔹 Notifica logout
     this.currentUserSubject.next(null);
+
+     this.currentUserSubject.next(null); // ✅ limpa o estado do utilizador
   }
 
 
