@@ -27,11 +27,17 @@ export const nisacAuthGuard: CanActivateFn = (route, state) => {
         return false;
       });
   }
-  else if (state.url === '/login')
+  /*else if (state.url === '/login')
   {
     router.navigate(['/']);
     return false;
-  }
+  }*/
+  else if (!auth.isAccessTokenInvalid() && state.url === '/login')
+  {
+        // Se já estiver autenticado e tentar ir ao login, redireciona para o dashboard
+        router.navigate(['/']);
+        return false;
+    }
   return true;
 
 };
