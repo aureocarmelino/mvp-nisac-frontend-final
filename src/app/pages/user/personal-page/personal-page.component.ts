@@ -13,7 +13,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { InputSwitchModule } from 'primeng/inputswitch'; 
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @Component({
   selector: 'app-personal-page',
@@ -57,7 +57,7 @@ export class PersonalPageComponent implements OnInit
     ngOnInit(): void
     {
         this.user = this.auth.jwtPayload.logged;
-        console.log(this.user.authority)
+        //console.log(this.user.authority)
     }
 
   showDialog()

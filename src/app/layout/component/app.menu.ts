@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AppMenuitem } from './app.menuitem';
+import { AuthService } from '../../api/services/auth.service';
 
 @Component({
     selector: 'app-menu',
@@ -16,9 +17,16 @@ import { AppMenuitem } from './app.menuitem';
     </ul> `
 })
 export class AppMenu {
+
     model: MenuItem[] = [];
+    user: any;
+
+    constructor(public auth : AuthService){}
 
     ngOnInit() {
+
+        const isAdmin = this.auth.jwtPayload?.logged?.authority === 'ADMIN';
+
         this.model = [
             {
                 label: 'Home',
@@ -54,11 +62,15 @@ export class AppMenu {
                     icon: 'pi pi-fw pi-user',
                     items:
                     [
-                      {
-                        label: 'Registo',
-                        icon: 'pi  pi-fw pi-user-plus',
-                        routerLink: 'utilizador/registo'
-                      },
+                      ...(isAdmin
+                        ? [
+                            {
+                            label: 'Registo',
+                            icon: 'pi pi-fw pi-user-plus',
+                            routerLink: 'utilizador/registo',
+                            },
+                        ]
+                        : []),
                       {
                         label: 'Listagem',
                         icon: 'pi pi-fw pi-users',
