@@ -26,13 +26,17 @@ export class UtilizadorService
 
   update(newUserNisac : CreateUserNisacDto, idUser : number): Observable<UserNisac>
   {
-    console.log("CHAMOU A API")
     return this.http.put<UserNisac>(this.url + `/api/utilizador/update/${idUser}`, newUserNisac);
   }
 
   updatePassowrd(userNisacUpdatePassworDto : UserNisacUpdatePassworDto): Observable<UserNisac>
   {
     return this.http.put<UserNisac>(this.url + "/api/utilizador/update-password", userNisacUpdatePassworDto);
+  }
+
+  changeStatus(id : number, status : boolean): Observable<UserNisac>
+  {
+    return this.http.put<UserNisac>(this.url + "/api/utilizador/" + id + "/" + status, {});
   }
 
   findAllUtilizadorPagination(page: number, size: number): Observable<UserNisacResponse>

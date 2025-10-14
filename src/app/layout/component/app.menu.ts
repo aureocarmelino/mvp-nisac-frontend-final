@@ -45,7 +45,7 @@ export class AppMenu {
                     routerLink: 'estatistica'
                   },
                 ]
-            },
+            },*/
             {
                 label: 'Gestão',
                 items: [
@@ -66,7 +66,7 @@ export class AppMenu {
                       },
                     ]
                   },
-                  {
+                  /*{
                     label: 'Trabalho efetuado', icon: 'pi pi-fw pi-briefcase',
                     items: [
                       {
@@ -160,9 +160,9 @@ export class AppMenu {
                         label: 'Listagem', icon: 'pi pi-fw pi-list', routerLink: ['/morada/listagem']
                       },
                     ]
-                  },
+                  },*/
                 ]
-              },*/
+              },
          /*   {
                 label: 'UI Components',
                 items: [

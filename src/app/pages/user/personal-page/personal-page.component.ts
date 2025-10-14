@@ -13,8 +13,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { SpinnerComponent } from '../../../components/loader/spinner/spinner.component';
+import { InputSwitchModule } from 'primeng/inputswitch'; 
 
 @Component({
   selector: 'app-personal-page',
@@ -88,7 +87,7 @@ export class PersonalPageComponent implements OnInit
     if(this.newUserForm.valid)
     {
       this.genericCreateService.executeWithHandling(
-        this.utilizadorService.update(this.newUserNisac, this.user.id),'Faça o login novamente. Utilizador actualizado com sucesso'
+        this.utilizadorService.update(this.newUserNisac, this.user.id),'Faça o login novamente. Utilizador atualizado com sucesso'
 
       ).subscribe(
       {
@@ -105,7 +104,7 @@ export class PersonalPageComponent implements OnInit
         error: () =>
         {
           this.spinner.hide();
-          this.toastr.error('Erro ao actualizar utilizador')
+          this.toastr.error('Erro ao atualizar utilizador')
         }
       });
     }
@@ -127,7 +126,7 @@ export class PersonalPageComponent implements OnInit
       if(this.passwordForm.valid)
       {
         this.genericCreateService.executeWithHandling(
-          this.utilizadorService.updatePassowrd(this.userNisacUpdatePassworDto),'Password actualizada com sucesso'
+          this.utilizadorService.updatePassowrd(this.userNisacUpdatePassworDto),'Password atualizada com sucesso'
         ).subscribe(
         {
           next: async () =>
@@ -139,7 +138,7 @@ export class PersonalPageComponent implements OnInit
                 this.router.navigate(['/login']);
                 this.spinner.hide();
           },
-          error: () => {this.spinner.hide(); this.toastr.error('Erro ao actualizar password')}
+          error: () => {this.spinner.hide(); this.toastr.error('Erro ao atualizar password')}
         });
       }
       else

@@ -14,11 +14,11 @@ import { RevenueStreamWidget } from './components/revenuestreamwidget';
             <div class="col-span-12 xl:col-span-6">
                 <!--app-recent-sales-widget RecentSalesWidget /-->
 
-                <!--app-best-selling-widget />
-                <app-notifications-widget /-->
+                <app-best-selling-widget />
+                <app-notifications-widget />
             </div>
             <div class="col-span-12 xl:col-span-6">
-                <!--app-revenue-stream-widget / -->
+                <app-revenue-stream-widget />
 
             </div>
         </div>
