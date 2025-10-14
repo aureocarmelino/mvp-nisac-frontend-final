@@ -32,6 +32,7 @@ export class PersonalPageComponent implements OnInit
     newUserNisac: CreateUserNisacDto = new CreateUserNisacDto();
     userNisacUpdatePassworDto: UserNisacUpdatePassworDto = new UserNisacUpdatePassworDto();
     user: any;
+    isAdmin: boolean = false;
 
   newUserForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -58,6 +59,16 @@ export class PersonalPageComponent implements OnInit
     {
         this.user = this.auth.jwtPayload.logged;
         //console.log(this.user.authority)
+
+         this.isAdmin  = this.user?.authority === 'ADMIN';
+
+        if (!this.isAdmin) {
+            // Bloqueia edição de campos não permitidos
+            this.newUserForm.get('name')?.disable();
+            this.newUserForm.get('username')?.disable();
+            this.newUserForm.get('email')?.disable();
+            this.newUserForm.get('authority')?.disable();
+        }
     }
 
   showDialog()
