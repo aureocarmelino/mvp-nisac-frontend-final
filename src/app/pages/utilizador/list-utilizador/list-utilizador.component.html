@@ -1,14 +1,13 @@
 <app-spinner></app-spinner>
 
 <div class="flex flex-col">
-    <div class="card"
-        style="background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%)">
+    <div class="card" style="background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%)">
         <div style="color: whitesmoke" class="font-semibold text-2xl mb-3">Listagem de Utilizadores</div>
         <app-breadcrumb [items]="items"></app-breadcrumb>
     </div>
 </div>
 
-<br>
+<br />
 
 <div class="card">
     <div class="font-semibold text-xl mb-4">Utilizadores</div>
@@ -17,7 +16,6 @@
         [lazy]="true"
         (onLazyLoad)="loadUsernisac($event)"
         [totalRecords]="totalUsersNisac"
-
         #tableUsersNisac
         [value]="usersNisac"
         dataKey="id"
@@ -58,7 +56,7 @@
                     <div class="flex justify-between items-center">
                         Utilizador
                         <!--p-columnFilter field="representative" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false"-->
-                            <!--ng-template #header>
+                        <!--ng-template #header>
                                 <div class="px-3 pt-3 pb-0">
                                     <span class="font-bold">Agent Picker</span>
                                 </div>
@@ -91,9 +89,7 @@
                     </div>
                 </th>
 
-
-
-                <th style="min-width: 4rem">
+                <th>
                     <div class="flex justify-between items-center">
                         Estado
                         <!--p-columnFilter field="status" matchMode="equals" display="menu">
@@ -114,8 +110,6 @@
                         <!--p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter -->
                     </div>
                 </th>
-
-
 
                 <!--th style="min-width: 12rem">
                     <div class="flex justify-between items-center">
@@ -157,24 +151,32 @@
                 <td>
                     {{ usersnisac.creationDate | date: 'dd/MM/yyyy' }}
                 </td>
-                <td>
-
+                <td class="text-center">
+                    <div class="flex justify-center items-center h-full w-full py-2">
                     <i
                         class="pi"
                         [ngClass]="{
-                            'pi-check-circle text-green-500': usersnisac?.status,
-                            'pi-times-circle text-red-500': !usersnisac?.status
+                            'pi-check-circle text-green-500 text-sm': usersnisac?.status,
+                            'pi-times-circle text-red-500 text-sm': !usersnisac?.status
                         }"
                     ></i>
+                    </div>
                 </td>
-                <td style="cursor: pointer" class="text-center">
 
-                    @if (this.auth.jwtPayload.logged.id !== usersnisac.id )
-                    {
-                      <i (click)="goToDetail(usersnisac.id)" class="pi pi-eye" style="color: slateblue"></i>
-                    }
+                @if (this.auth.jwtPayload.logged.id !== usersnisac.id) {
+                    <td class="text-center cursor-pointer hover:bg-indigo-100 active:bg-indigo-200 transition-colors rounded-md" (click)="goToDetail(usersnisac.id)">
+                        <div class="flex justify-center items-center h-full w-full py-2">
+                            <i class="pi pi-eye text-indigo-600 text-lg"></i>
+                        </div>
+                    </td>
+                } @else {
+                    <td class="text-center text-gray-400">
+                        <div class="flex justify-center items-center h-full w-full py-2">
+                            <i class="pi pi-eye-slash text-sm"></i>
+                        </div>
 
-                  </td>
+                    </td>
+                }
             </tr>
         </ng-template>
         <ng-template #emptymessage>

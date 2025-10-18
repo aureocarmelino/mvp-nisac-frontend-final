@@ -1,1 +1,182 @@
-<p>detail-acao-subtipo-atividade-reuniao-evento works!</p>
+<ng-container *ngIf="acao; else loadingTemplate">
+    <div class="p-6">
+      <h2 class="text-3xl font-semibold text-gray-900 mb-4">Detalhe - Ação</h2>
+
+     <div class="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 mb-6 space-y-2 md:space-y-0">
+        <p class="flex-1">Aqui você pode visualizar os detalhes da ação.</p>
+
+         <!-- Botões alinhados à direita -->
+        <div class="flex justify-end gap-2">
+            <button
+                (click)="showDialogEditar()"
+                pButton
+                label="Editar"
+                icon="pi pi-pencil"
+                class="p-button-info p-button-sm"
+            ></button>
+
+            <ng-container *ngIf="auth.jwtPayload.logged.authority === 'ADMIN'">
+            <button
+                (click)="showDialogDesativar()"
+                pButton
+                label="Remover"
+                icon="pi pi-trash"
+                class="p-button-danger p-button-sm"
+            ></button>
+            </ng-container>
+        </div>
+      </div>
+
+      <ul class="divide-y divide-gray-200">
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Tipo de Atividade, Reunião e Evento</div>
+          <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ acao!.tipoAtividadeReuniaoEvento.description }}</div>
+        </li>
+
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Ação</div>
+          <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ acao!.description }}</div>
+        </li>
+
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Criação</div>
+          <div class="w-full md:w-3/4 text-gray-900">
+            {{ acao!.creationDate | date: 'dd/MM/yyyy HH:mm' }}
+          </div>
+        </li>
+
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Actualização</div>
+          <div class="w-full md:w-3/4 text-gray-900">
+            {{ acao!.updateDate | date: 'dd/MM/yyyy HH:mm' }}
+          </div>
+        </li>
+
+        <li class="py-4 flex flex-col md:flex-row md:items-center">
+          <div class="w-full md:w-1/4 text-gray-500 font-medium">Estado</div>
+          <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+            <i
+              class="pi"
+              [ngClass]="{
+                'pi-check-circle text-green-500': acao.status,
+                'pi-times-circle text-red-500': !acao.status
+              }"
+            ></i>
+            <span class="font-semibold" [ngClass]="acao.status ? 'text-green-500' : 'text-red-500'">
+              {{ acao.status ? 'Activo' : 'Inactivo' }}
+            </span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="mt-6">
+        <p-button (click)="goBack()" label="Listagem" icon="pi pi-arrow-left"></p-button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingTemplate>
+    <p class="text-center text-gray-500">Informações não disponíveis.</p>
+  </ng-template>
+
+
+
+<!-- Dialogo de remoção -->
+<p-dialog
+  [resizable]="false"
+  (onHide)="onDialogCloseDesativar()"
+  header="Remover Tipo de Equipamento"
+  [modal]="true"
+  [(visible)]="visibleDialogDesativar"
+  [style]="{ width: '40vw' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <p class="m-0">
+    Tem a certeza que deseja remover:
+    <strong>{{ acao?.description }}</strong> ?
+  </p>
+
+  <div class="flex justify-end mt-4">
+    <button
+      (click)="changeStatusById()"
+      type="button"
+      pButton
+      class="p-button-danger p-button-sm"
+    >
+      <i class="pi pi-check mr-2"></i>
+      <strong>Sim</strong>
+    </button>
+  </div>
+</p-dialog>
+
+
+<p-dialog
+  (onHide)="onDialogCloseEditar()"
+  header="Editar"
+  [modal]="true"
+  [(visible)]="visibleDialogEditar"
+  [style]="{ width: '55rem', minHeight: '30rem', maxHeight: '90vh' }"
+  [contentStyle]="{ overflow: 'visible' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <div>
+    <form [formGroup]="newForm" (ngSubmit)="update($event)" autocomplete="off">
+
+      <!-- Layout vertical, campos ocupam largura total -->
+      <div class="flex flex-col gap-4 mb-6">
+
+        <!-- Campo Tipo Atividade, Reunião e Evento -->
+        <div>
+          <label
+            for="tipoAtividadeReuniaoEvento"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Tipo Atividade, Reunião e Evento
+          </label>
+          <p-autoComplete
+            id="tipoAtividadeReuniaoEvento"
+            class="w-full"
+            [suggestions]="filteredTipoAtividadeReuniaoEventos"
+            (completeMethod)="filterTipoAtividadeReuniaoEvento($event)"
+            field="description"
+            formControlName="tipoAtividadeReuniaoEvento"
+            placeholder="Selecione o tipo de atividade, reunião e evento"
+            [dropdown]="true"
+            appendTo="body"
+          >
+          </p-autoComplete>
+        </div>
+
+        <!-- Campo Descrição -->
+        <div>
+          <label
+            for="description"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Descrição
+          </label>
+          <input
+            pInputText
+            id="description"
+            type="text"
+            formControlName="description"
+            class="w-full"
+          />
+        </div>
+
+      </div>
+
+      <!-- Botão de submissão -->
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          [disabled]="!newForm.valid"
+          pButton
+          label="Editar"
+          class="bg-gradient-to-r from-blue-900 to-blue-600 text-white"
+        ></button>
+      </div>
+
+    </form>
+  </div>
+</p-dialog>

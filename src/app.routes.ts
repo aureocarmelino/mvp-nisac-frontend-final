@@ -277,19 +277,19 @@ export const appRoutes: Routes =
 
              /*            TRABALHO EFETUADO      */
             {
-                title: "Registo de trabalho efetuado",
-                path: 'trabalho-efetuado/registo',
+                title: "Registo de trabalho efectuado",
+                path: 'trabalho-efectuado/registo',
                 component: CreateTrabalhoEfetuadoComponent,
                 canActivate: [nisacAuthGuard]
             },
             {
-                title: "Listagem de trabalhos efetuados",
-                path: 'trabalho-efetuado/listagem',
+                title: "Listagem de trabalhos efectuados",
+                path: 'trabalho-efectuado/listagem',
                 component: ListTrabalhoEfetuadoComponent,
                 canActivate: [nisacAuthGuard]
             },
             {
-                title: "Detalhe - Trabalho Efectuado", path: 'trabalho-efetuado/detalhe/:id',
+                title: "Detalhe - Trabalho Efectuado", path: 'trabalho-efectuado/detalhe/:id',
                 component: DetailTrabalhoEfetuadoComponent,
                 canActivate: [nisacAuthGuard]
             },

@@ -38,8 +38,8 @@ export class ListTrabalhoEfetuadoComponent
       this.items =
       [
         { label: "Dashboard", routerLink: '/'},
-        { label: 'Registo de Trabalho Efetuado', routerLink: '/trabalho-efetuado/registo'},
-        { label: 'Listagem de Trabalho Efetuado', id: "current" }
+        { label: 'Registo de Trabalho Efectuado', routerLink: '/trabalho-efectuado/registo'},
+        { label: 'Listagem de Trabalho Efectuado', id: "current" }
       ];
     }
 
@@ -64,7 +64,7 @@ export class ListTrabalhoEfetuadoComponent
 
      goToDetail(itemId: number): void
      {
-       this.router.navigate([`/trabalho-efetuado/detalhe/${itemId}`]);
+       this.router.navigate([`/trabalho-efectuado/detalhe/${itemId}`]);
      }
 
      /* filtrarDadosRenderizadosTable(table: Table, event: Event)

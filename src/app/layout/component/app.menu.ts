@@ -78,14 +78,14 @@ export class AppMenu {
                       },
                     ]
                   },
-                  /*{
-                    label: 'Trabalho efetuado', icon: 'pi pi-fw pi-briefcase',
+                  {
+                    label: 'Trabalho efectuado', icon: 'pi pi-fw pi-briefcase',
                     items: [
                       {
-                        label: 'Registo', icon: 'pi pi-fw pi-plus-circle', routerLink: ['/trabalho-efetuado/registo']
+                        label: 'Registo', icon: 'pi pi-fw pi-plus-circle', routerLink: ['/trabalho-efectuado/registo']
                       },
                       {
-                        label: 'Listagem', icon: 'pi pi-fw pi-list', routerLink: ['/trabalho-efetuado/listagem']
+                        label: 'Listagem', icon: 'pi pi-fw pi-list', routerLink: ['/trabalho-efectuado/listagem']
                       },
                     ]
                   },
@@ -102,7 +102,7 @@ export class AppMenu {
                     ]
                   },
 
-                  {
+                 {
                     label: 'Tipo atividade, reunião e evento', icon: 'pi pi-fw pi-bookmark',
                     items: [
                       {
@@ -126,7 +126,7 @@ export class AppMenu {
                     ]
                   },
 
-                  {
+                   /*{
                     label: 'Atividade Complementar', icon: 'pi pi-fw pi-bookmark',
                     items: [
                       {

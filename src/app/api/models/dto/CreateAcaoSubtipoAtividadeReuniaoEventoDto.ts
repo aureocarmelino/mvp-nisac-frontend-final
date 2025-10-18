@@ -1,5 +1,5 @@
 export class CreateAcaoSubtipoAtividadeReuniaoEventoDto
 {
     description?: string;
-    tipoAtividadeReuniaoEvento?: string;
+    tipoAtividadeReuniaoEvento?: number;
 }

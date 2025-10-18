@@ -39,7 +39,7 @@ export class CreateTrabalhoEfetuadoComponent
       this.items =
       [
         { label: "Dashboard", routerLink: '/'},
-        { label: 'Listagem de Trabalho Efetuado', routerLink: '/trabalho-efetuado/listagem'},
+        { label: 'Listagem de Trabalho Efetuado', routerLink: '/trabalho-efectuado/listagem'},
         { label: 'Registo de Trabalho Efetuado', id: "current" }
       ];
     }
@@ -53,7 +53,7 @@ export class CreateTrabalhoEfetuadoComponent
       if(this.newTrabalhoEfetuadoForm.valid)
       {
         this.genericCreateService.executeWithHandling(
-          this.trabalhoEfetuadoService.create(this.newTrabalhoEfetuado),'Trabalho efetuado criado com sucesso'
+          this.trabalhoEfetuadoService.create(this.newTrabalhoEfetuado),'Trabalho efectuado criado com sucesso'
         ).subscribe(
         {
           next: () => this.resetFormulario(),

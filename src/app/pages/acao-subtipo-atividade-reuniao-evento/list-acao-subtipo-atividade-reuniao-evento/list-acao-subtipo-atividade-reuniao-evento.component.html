@@ -68,7 +68,7 @@
         <ng-template #body let-acaosubtipo>
             <tr>
                 <td>
-                    {{ acaosubtipo.description }}
+                    {{ acaosubtipo.tipoAtividadeReuniaoEvento.description }} - {{ acaosubtipo.description }}
                 </td>
                 <td>
                     {{ acaosubtipo.tipoAtividadeReuniaoEvento.description }}
@@ -76,17 +76,21 @@
                 <td>
                     {{ acaosubtipo.creationDate | date: 'dd/MM/yyyy' }}
                 </td>
-                <td>
+                <td class="text-center">
+                    <div class="flex justify-center items-center h-full w-full py-2">
                     <i
                         class="pi"
                         [ngClass]="{
-                            'pi-check-circle text-green-500': acaosubtipo?.status,
-                            'pi-times-circle text-red-500': !acaosubtipo?.status
+                            'pi-check-circle text-green-500 text-sm': acaosubtipo?.status,
+                            'pi-times-circle text-red-500 text-sm': !acaosubtipo?.status
                         }"
-                        ></i>
+                    ></i>
+                    </div>
                 </td>
-                <td style="cursor: pointer" class="text-center">
-                    <i (click)="goToDetail(acaosubtipo.id)" class="pi pi-eye" style="color: slateblue"></i>
+                <td class="text-center cursor-pointer hover:bg-indigo-100 active:bg-indigo-200 transition-colors rounded-md" (click)="goToDetail(acaosubtipo.id)">
+                    <div class="flex justify-center items-center h-full w-full py-2">
+                        <i class="pi pi-eye text-indigo-600 text-lg"></i>
+                    </div>
                 </td>
             </tr>
         </ng-template>

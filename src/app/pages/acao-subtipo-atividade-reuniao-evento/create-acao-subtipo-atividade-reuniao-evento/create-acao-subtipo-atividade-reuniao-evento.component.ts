@@ -35,7 +35,8 @@ export class CreateAcaoSubtipoAtividadeReuniaoEventoComponent implements OnInit
 
   items: MenuItem[] | undefined;
 
-  constructor(public acaoSubtipoAtividadeReuniaoEventoService : AcaoSubtipoAtividadeReuniaoEventoService, public tipoAtividadeReuniaoEventoService : TipoAtividadeReuniaoEventoService,
+  constructor(public acaoSubtipoAtividadeReuniaoEventoService : AcaoSubtipoAtividadeReuniaoEventoService,
+    public tipoAtividadeReuniaoEventoService : TipoAtividadeReuniaoEventoService,
     private toastr: ToastrService, private spinner: NgxSpinnerService, private genericCreateService: GenericCreateService) { }
 
 
@@ -121,7 +122,7 @@ export class CreateAcaoSubtipoAtividadeReuniaoEventoComponent implements OnInit
     resetFormulario()
     {
       this.newAcao = {
-        tipoAtividadeReuniaoEvento: '',
+        tipoAtividadeReuniaoEvento: undefined,
         description: ''
       };
 

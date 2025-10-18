@@ -62,7 +62,7 @@ export class DetailUtilizadorComponent implements OnInit
   changeStatusById(): void
   {
     this.genericCreateService.executeWithHandling(
-          this.utilizadorService.changeStatus(this.userNisac?.id!, false),'Utilizador removido com sucesso'
+          this.utilizadorService.changeStatus(this.userNisac?.id!, false),'Trabalho Efectuado removido com sucesso'
         ).subscribe(
         {
           next: () => this.goBack(),
