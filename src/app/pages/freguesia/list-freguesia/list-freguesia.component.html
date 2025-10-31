@@ -66,17 +66,21 @@
                 <td>
                     {{ freguesia.creationDate | date: 'dd/MM/yyyy' }}
                 </td>
-                <td>
+                <td class="text-center">
+                    <div class="flex justify-center items-center h-full w-full py-2">
                     <i
                         class="pi"
                         [ngClass]="{
-                            'pi-check-circle text-green-500': freguesia?.status,
-                            'pi-times-circle text-red-500': !freguesia?.status
+                            'pi-check-circle text-green-500 text-sm': freguesia?.status,
+                            'pi-times-circle text-red-500 text-sm': !freguesia?.status
                         }"
-                        ></i>
+                    ></i>
+                    </div>
                 </td>
-                <td style="cursor: pointer" class="text-center" (click)="goToDetail(freguesia.id)">
-                    <i  class="pi pi-eye" style="color: slateblue"></i>
+                <td class="text-center cursor-pointer hover:bg-indigo-100 active:bg-indigo-200 transition-colors rounded-md" (click)="goToDetail(freguesia.id)">
+                    <div class="flex justify-center items-center h-full w-full py-2">
+                        <i class="pi pi-eye text-indigo-600 text-lg"></i>
+                    </div>
                 </td>
             </tr>
         </ng-template>

@@ -35,5 +35,12 @@ export class AtividadeComplementarService
    {
      return this.http.get<AtividadeComplementar>( this.url + `/api/nisac/atividade/complementar/${id}`);
    }
- }
 
+   update(id: number, atividadeComplementar: CreateAtividadeComplementarDto): Observable<AtividadeComplementar> {
+        return this.http.put<AtividadeComplementar>(this.url + "/api/nisac/atividade/complementar/update/" + id, atividadeComplementar);
+    }
+
+    changeStatus(id: number, status: boolean): Observable<AtividadeComplementar> {
+        return this.http.put<AtividadeComplementar>(this.url + "/api/nisac/atividade/complementar/" + id + "/" + status, {});
+    }
+}

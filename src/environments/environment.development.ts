@@ -6,7 +6,6 @@ export const environment =
   disallowedRoutes: [/\/oauth\/token/, /\/api\/auth\/signup/]
 };
 
-
 /*
 export const environment =
 {

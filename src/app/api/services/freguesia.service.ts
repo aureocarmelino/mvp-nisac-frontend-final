@@ -7,33 +7,36 @@ import { Freguesia } from '../models/entity/Freguesia';
 import { CreateFreguesiaDto } from '../models/dto/CreateFreguesiaDto';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class FreguesiaService
-{
+export class FreguesiaService {
 
-  url = environment.baseUrl;
-  constructor(private http: HttpClient){}
+    url = environment.baseUrl;
+    constructor(private http: HttpClient) { }
 
 
-  create(newFreguesia : CreateFreguesiaDto): Observable<CreateFreguesiaDto>
-  {
-    return this.http.post<CreateFreguesiaDto>(this.url + "/api/nisac/freguesia", newFreguesia);
-  }
+    create(newFreguesia: CreateFreguesiaDto): Observable<CreateFreguesiaDto> {
+        return this.http.post<CreateFreguesiaDto>(this.url + "/api/nisac/freguesia", newFreguesia);
+    }
 
-  findAllPagination(page: number, size: number): Observable<FreguesiaResponse>
-  {
-    return this.http.get<FreguesiaResponse>( this.url + `/api/nisac/freguesia/pagination?page=${page}&size=${size}&status=true`);
-  }
+    findAllPagination(page: number, size: number): Observable<FreguesiaResponse> {
+        return this.http.get<FreguesiaResponse>(this.url + `/api/nisac/freguesia/pagination?page=${page}&size=${size}&status=true`);
+    }
 
-  findAll(): Observable<Freguesia[]>
-  {
-    return this.http.get<Freguesia[]>( this.url + `/api/nisac/freguesia/ativos/true`);
-  }
+    findAll(): Observable<Freguesia[]> {
+        return this.http.get<Freguesia[]>(this.url + `/api/nisac/freguesia/ativos/true`);
+    }
 
-  findById(id : string) : Observable<Freguesia>
-  {
-    return this.http.get<Freguesia>( this.url + `/api/nisac/freguesia/${id}`);
-  }
+    findById(id: string): Observable<Freguesia> {
+        return this.http.get<Freguesia>(this.url + `/api/nisac/freguesia/${id}`);
+    }
+
+    update(id: number, createFreguesiaDto: CreateFreguesiaDto): Observable<Freguesia> {
+        return this.http.put<Freguesia>(this.url + "/api/nisac/freguesia/update/" + id, createFreguesiaDto);
+    }
+
+    changeStatus(id: number, status: boolean): Observable<Freguesia> {
+        return this.http.put<Freguesia>(this.url + "/api/nisac/freguesia/" + id + "/" + status, {});
+    }
 
 }

@@ -124,9 +124,9 @@ export class CreateTipoNaturezaComponent implements OnInit
     resetFormulario()
     {
       this.newTipoNaturezaOcorrencia = {
-        grupoNaturezaOcorrencia: '',
+        grupoNaturezaOcorrencia: undefined,
         description: '',
-        code: ''
+        code: undefined
       };
       this.newTipoNaturezaOcorrenciaForm.reset(this.newTipoNaturezaOcorrencia);
     }

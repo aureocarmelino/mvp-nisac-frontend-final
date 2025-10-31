@@ -1,66 +1,94 @@
 <ng-container *ngIf="atividadeComplementar; else loadingTemplate">
     <div class="p-6">
-      <h2 class="text-3xl font-semibold text-gray-900 mb-4">Detalhe - Atividade Complementar</h2>
+        <h2 class="text-3xl font-semibold text-gray-900 mb-4">Detalhe - Atividade Complementar</h2>
 
-      <div
-        class="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 mb-6 space-y-2 md:space-y-0"
-      >
-        <p>Aqui você pode visualizar os detalhes do atividade complementar.</p>
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 mb-6 space-y-2 md:space-y-0">
+            <p class="flex-1">Aqui você pode visualizar os detalhes do tipo de equipamento.</p>
 
-        <!--ng-container *ngIf="auth.jwtPayload.logged.authority === 'ADMIN'">
-          <button
-            pButton
-            label="Editar"
-            icon="pi pi-pencil"
-            class="p-button p-button-sm p-button-text"
-            (click)="onEdit()"
-          ></button>
-        </ng-container-->
-      </div>
+            <!-- Botões alinhados à direita -->
+            <div class="flex justify-end gap-2">
+                <button (click)="showDialogEditar()" pButton label="Editar" icon="pi pi-pencil" class="p-button-info p-button-sm"></button>
+                <ng-container *ngIf="auth.jwtPayload.logged.authority === 'ADMIN'">
+                    <button (click)="showDialogDesativar()" pButton label="Remover" icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
+                </ng-container>
+            </div>
+        </div>
 
-      <ul class="divide-y divide-gray-200">
-        <li class="py-4 flex flex-col md:flex-row md:items-center">
-          <div class="w-full md:w-1/4 text-gray-500 font-medium">Atividade Complementar</div>
-          <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ atividadeComplementar.description }}</div>
-        </li>
+        <ul class="divide-y divide-gray-200">
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Atividade Complementar</div>
+                <div class="w-full md:w-3/4 text-gray-900 font-semibold">{{ atividadeComplementar.description }}</div>
+            </li>
 
-        <li class="py-4 flex flex-col md:flex-row md:items-center">
-          <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Criação</div>
-          <div class="w-full md:w-3/4 text-gray-900">
-            {{ atividadeComplementar.creationDate | date: 'dd/MM/yyyy HH:mm' }}
-          </div>
-        </li>
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Criação</div>
+                <div class="w-full md:w-3/4 text-gray-900">
+                    {{ atividadeComplementar.creationDate | date: 'dd/MM/yyyy HH:mm' }}
+                </div>
+            </li>
 
-        <li class="py-4 flex flex-col md:flex-row md:items-center">
-          <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Actualização</div>
-          <div class="w-full md:w-3/4 text-gray-900">
-            {{ atividadeComplementar.updateDate | date: 'dd/MM/yyyy HH:mm' }}
-          </div>
-        </li>
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Data Actualização</div>
+                <div class="w-full md:w-3/4 text-gray-900">
+                    {{ atividadeComplementar.updateDate | date: 'dd/MM/yyyy HH:mm' }}
+                </div>
+            </li>
 
-        <li class="py-4 flex flex-col md:flex-row md:items-center">
-          <div class="w-full md:w-1/4 text-gray-500 font-medium">Estado</div>
-          <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
-            <i
-              class="pi"
-              [ngClass]="{
-                'pi-check-circle text-green-500': atividadeComplementar.status,
-                'pi-times-circle text-red-500': !atividadeComplementar.status
-              }"
-            ></i>
-            <span class="font-semibold" [ngClass]="atividadeComplementar.status ? 'text-green-500' : 'text-red-500'">
-              {{ atividadeComplementar.status ? 'Activo' : 'Inactivo' }}
-            </span>
-          </div>
-        </li>
-      </ul>
+            <li class="py-4 flex flex-col md:flex-row md:items-center">
+                <div class="w-full md:w-1/4 text-gray-500 font-medium">Estado</div>
+                <div class="w-full md:w-3/4 flex items-center gap-2 text-gray-900">
+                    <i
+                        class="pi"
+                        [ngClass]="{
+                            'pi-check-circle text-green-500': atividadeComplementar.status,
+                            'pi-times-circle text-red-500': !atividadeComplementar.status
+                        }"
+                    ></i>
+                    <span class="font-semibold" [ngClass]="atividadeComplementar.status ? 'text-green-500' : 'text-red-500'">
+                        {{ atividadeComplementar.status ? 'Activo' : 'Inactivo' }}
+                    </span>
+                </div>
+            </li>
+        </ul>
 
-      <div class="mt-6">
-        <p-button (click)="goBack()" label="Listagem" icon="pi pi-arrow-left"></p-button>
-      </div>
+        <div class="mt-6">
+            <p-button (click)="goBack()" label="Listagem" icon="pi pi-arrow-left"></p-button>
+        </div>
     </div>
-  </ng-container>
+</ng-container>
 
-  <ng-template #loadingTemplate>
+<ng-template #loadingTemplate>
     <p class="text-center text-gray-500">Informações da atividade complementar não disponíveis.</p>
-  </ng-template>
+</ng-template>
+
+<!-- Dialogo de remoção -->
+<p-dialog [resizable]="false" (onHide)="onDialogCloseDesativar()" header="Remover Tipo de Equipamento" [modal]="true" [(visible)]="visibleDialogDesativar" [style]="{ width: '40vw' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <p class="m-0">
+        Tem a certeza que deseja remover a atividade complementar:
+        <strong>{{ atividadeComplementar?.description }}</strong> ?
+    </p>
+
+    <div class="flex justify-end mt-4">
+        <button (click)="changeStatusById()" type="button" pButton class="p-button-danger p-button-sm">
+            <i class="pi pi-check mr-2"></i>
+            <strong>Sim</strong>
+        </button>
+    </div>
+</p-dialog>
+
+<p-dialog (onHide)="onDialogCloseEditar()" header="Editar Tipo de Equipamento" [modal]="true" [(visible)]="visibleDialogEditar" [style]="{ width: '55rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <div>
+        <form [formGroup]="newForm" (ngSubmit)="update($event)" autocomplete="off">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
+                    <input pInputText id="description" type="text" formControlName="description" class="w-full" />
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button type="submit" [disabled]="!newForm.valid" pButton label="Editar" class="bg-gradient-to-r from-blue-900 to-blue-600 text-white"></button>
+            </div>
+        </form>
+    </div>
+</p-dialog>

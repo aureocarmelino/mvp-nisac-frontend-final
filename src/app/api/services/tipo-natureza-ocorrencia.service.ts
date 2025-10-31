@@ -7,32 +7,35 @@ import { NaturezaOcorrenciaResponse } from '../models/httpResponse/NaturezaOcorr
 import { TipoNaturezaOcorrencia } from '../models/entity/TipoNaturezaOcorrencia';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class TipoNaturezaOcorrenciaService
-{
-  url = environment.baseUrl;
+export class TipoNaturezaOcorrenciaService {
+    url = environment.baseUrl;
 
-  constructor(private http: HttpClient){}
+    constructor(private http: HttpClient) { }
 
-  create(newNaturezaOcorrencia : CreateTipoNaturezaOcorrenciaDto): Observable<CreateTipoNaturezaOcorrenciaDto>
-  {
-    return this.http.post<CreateTipoNaturezaOcorrenciaDto>(this.url + "/api/nisac/tipo/natureza/ocorrencia", newNaturezaOcorrencia);
-  }
+    create(newNaturezaOcorrencia: CreateTipoNaturezaOcorrenciaDto): Observable<CreateTipoNaturezaOcorrenciaDto> {
+        return this.http.post<CreateTipoNaturezaOcorrenciaDto>(this.url + "/api/nisac/tipo/natureza/ocorrencia", newNaturezaOcorrencia);
+    }
 
-  findAllPagination(page: number, size: number): Observable<NaturezaOcorrenciaResponse>
-  {
-    return this.http.get<NaturezaOcorrenciaResponse>( this.url + `/api/nisac/tipo/natureza/ocorrencia/pagination?page=${page}&size=${size}&status=true`);
-  }
+    findAllPagination(page: number, size: number): Observable<NaturezaOcorrenciaResponse> {
+        return this.http.get<NaturezaOcorrenciaResponse>(this.url + `/api/nisac/tipo/natureza/ocorrencia/pagination?page=${page}&size=${size}&status=true`);
+    }
 
-  findById(id : number) : Observable<TipoNaturezaOcorrencia>
-  {
-    return this.http.get<TipoNaturezaOcorrencia>( this.url + `/api/nisac/tipo/natureza/ocorrencia/${id}`);
-  }
+    findById(id: string): Observable<TipoNaturezaOcorrencia> {
+        return this.http.get<TipoNaturezaOcorrencia>(this.url + `/api/nisac/tipo/natureza/ocorrencia/${id}`);
+    }
 
-  findByGrupoNaturezaId(id : string) : Observable<TipoNaturezaOcorrencia[]>
-  {
-    return this.http.get<TipoNaturezaOcorrencia[]>( this.url + `/api/nisac/tipo/natureza/ocorrencia/grupo/${id}`);
-  }
+    findByGrupoNaturezaId(id: string): Observable<TipoNaturezaOcorrencia[]> {
+        return this.http.get<TipoNaturezaOcorrencia[]>(this.url + `/api/nisac/tipo/natureza/ocorrencia/grupo/${id}`);
+    }
+
+    update(id: number, createAtividadeComplementarDto: CreateTipoNaturezaOcorrenciaDto): Observable<TipoNaturezaOcorrencia> {
+        return this.http.put<TipoNaturezaOcorrencia>(this.url + "/api/nisac/tipo/natureza/ocorrencia/update/" + id, createAtividadeComplementarDto);
+    }
+
+    changeStatus(id: number, status: boolean): Observable<TipoNaturezaOcorrencia> {
+        return this.http.put<TipoNaturezaOcorrencia>(this.url + "/api/nisac/tipo/natureza/ocorrencia/" + id + "/" + status, {});
+    }
 
 }

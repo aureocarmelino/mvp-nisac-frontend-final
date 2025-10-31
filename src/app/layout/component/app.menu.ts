@@ -126,7 +126,7 @@ export class AppMenu {
                     ]
                   },
 
-                   /*{
+                   {
                     label: 'Atividade Complementar', icon: 'pi pi-fw pi-bookmark',
                     items: [
                       {
@@ -172,7 +172,7 @@ export class AppMenu {
                         label: 'Listagem', icon: 'pi pi-fw pi-list', routerLink: ['/morada/listagem']
                       },
                     ]
-                  },*/
+                  },
                 ]
               },
          /*   {

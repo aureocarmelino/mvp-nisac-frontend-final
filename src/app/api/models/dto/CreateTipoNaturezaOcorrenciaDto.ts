@@ -1,6 +1,6 @@
 export class CreateTipoNaturezaOcorrenciaDto
 {
-  grupoNaturezaOcorrencia?: string;
+  grupoNaturezaOcorrencia?: number;
   description?: string;
-  code?: string;
+  code?: number;
 }

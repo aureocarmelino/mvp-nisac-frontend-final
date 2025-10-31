@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TipoEquipamento } from '../../../api/models/entity/TipoEquipamento';
 import { AuthService } from '../../../api/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MoradaService } from '../../../api/services/morada.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TipoEquipamentoService } from '../../../api/services/tipo-equipamento.service';

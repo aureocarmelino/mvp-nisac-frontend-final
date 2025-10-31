@@ -121,7 +121,7 @@ export class CreateMoradaComponent implements OnInit
     resetFormulario()
     {
       this.newMorada = {
-        freguesia: '',
+        freguesia: undefined,
         rua: ''
       };
 
