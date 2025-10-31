@@ -62,7 +62,7 @@
 </ng-template>
 
 <!-- Dialogo de remoção -->
-<p-dialog [resizable]="false" (onHide)="onDialogCloseDesativar()" header="Remover Tipo de Equipamento" [modal]="true" [(visible)]="visibleDialogDesativar" [style]="{ width: '40vw' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+<p-dialog [resizable]="false" (onHide)="onDialogCloseDesativar()" header="Remover" [modal]="true" [(visible)]="visibleDialogDesativar" [style]="{ width: '40vw' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
     <p class="m-0">
         Tem a certeza que deseja remover a atividade complementar:
         <strong>{{ atividadeComplementar?.description }}</strong> ?
@@ -76,7 +76,7 @@
     </div>
 </p-dialog>
 
-<p-dialog (onHide)="onDialogCloseEditar()" header="Editar Tipo de Equipamento" [modal]="true" [(visible)]="visibleDialogEditar" [style]="{ width: '55rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+<p-dialog (onHide)="onDialogCloseEditar()" header="Editar" [modal]="true" [(visible)]="visibleDialogEditar" [style]="{ width: '55rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
     <div>
         <form [formGroup]="newForm" (ngSubmit)="update($event)" autocomplete="off">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
