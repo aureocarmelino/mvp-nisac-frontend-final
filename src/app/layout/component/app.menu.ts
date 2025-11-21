@@ -32,7 +32,7 @@ export class AppMenu {
                 label: 'Home',
                 items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
             },
-            /*{
+            {
                 label:  'Operações',
                 items:
                 [
@@ -43,7 +43,7 @@ export class AppMenu {
                   },
                 ]
             },
-            {
+           /* {
                 label:  'Consultas',
                 items:
                 [

@@ -59,7 +59,7 @@ export const appRoutes: Routes =
         path: '',
         title: 'Página Inicial',
         component: AppLayout,
-        canActivate: [nisacAuthGuard],
+        //canActivate: [nisacAuthGuard],
         children: [
             { path: '', component: DashboardComponent },
             { path: 'uikit', loadChildren: () => import('./app/pages/uikit/uikit.routes') },
@@ -70,7 +70,7 @@ export const appRoutes: Routes =
                 title: "Ocorrências",
                 path: 'ocorrencias',
                 component: ViewGrupoOcorrenciaComponent,
-                canActivate: [nisacAuthGuard]
+               // canActivate: [nisacAuthGuard]
             },
 
             {
